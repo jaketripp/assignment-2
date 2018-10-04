@@ -16,6 +16,8 @@
 		CC13CDC22166838100DA1F6A /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC13CDC12166838100DA1F6A /* Root.storyboard */; };
 		CC13CDC5216684C600DA1F6A /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13CDC4216684C600DA1F6A /* ApiRequest.swift */; };
 		CC13CDC72166869000DA1F6A /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13CDC62166869000DA1F6A /* TableViewCell.swift */; };
+		CC13CDCA21669D8300DA1F6A /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13CDC921669D8300DA1F6A /* Customer.swift */; };
+		CC13CDCC2166A19D00DA1F6A /* DeletedCustomerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13CDCB2166A19D00DA1F6A /* DeletedCustomerInfo.swift */; };
 		CEA8CA041F071B2300448B51 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA8CA031F071B2300448B51 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,8 @@
 		CC13CDC12166838100DA1F6A /* Root.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Root.storyboard; sourceTree = "<group>"; };
 		CC13CDC4216684C600DA1F6A /* ApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
 		CC13CDC62166869000DA1F6A /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		CC13CDC921669D8300DA1F6A /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		CC13CDCB2166A19D00DA1F6A /* DeletedCustomerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedCustomerInfo.swift; sourceTree = "<group>"; };
 		CEA8CA031F071B2300448B51 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/Images.xcassets"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -91,6 +95,7 @@
 		4FD6C4A11B755265002F9F90 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CC13CDC821669D3700DA1F6A /* Models */,
 				CC13CDC32166849400DA1F6A /* Controllers */,
 				CC13CDC02166836B00DA1F6A /* Views */,
 				4FD6C49A1B755242002F9F90 /* Bridging-Header.h */,
@@ -125,6 +130,15 @@
 				CC13CDC4216684C600DA1F6A /* ApiRequest.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		CC13CDC821669D3700DA1F6A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CC13CDC921669D8300DA1F6A /* Customer.swift */,
+				CC13CDCB2166A19D00DA1F6A /* DeletedCustomerInfo.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		DDFDDF0A29E4BDD114B51BBC /* Pods */ = {
@@ -287,6 +301,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FD6C47A1B754AF1002F9F90 /* AppDelegate.swift in Sources */,
+				CC13CDCC2166A19D00DA1F6A /* DeletedCustomerInfo.swift in Sources */,
+				CC13CDCA21669D8300DA1F6A /* Customer.swift in Sources */,
 				4FD6C49F1B755242002F9F90 /* RootViewController.swift in Sources */,
 				4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */,
 				CC13CDC72166869000DA1F6A /* TableViewCell.swift in Sources */,

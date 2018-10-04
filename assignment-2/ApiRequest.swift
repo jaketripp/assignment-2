@@ -13,9 +13,9 @@ import PromiseKit
 
 class ApiRequest: NSObject {
     
-    func getDataRows(completion: @escaping (([[String: Any]]) -> Void)) {
+    func getDataRows(completion: @escaping (([Customer]) -> Void)) {
         let restApi = SFRestAPI.sharedInstance()
-        let soqlQuery = "SELECT Name, State__c, Id FROM CM_Customer__c LIMIT 10"
+        let soqlQuery = "SELECT Name, State__c, Id FROM CM_Customer__c WHERE Name = 'Jake Tripp' LIMIT 10"
         
         restApi.performSOQLQuery(soqlQuery, fail: { (error, response) in
             
@@ -24,7 +24,11 @@ class ApiRequest: NSObject {
         }, complete: { (json, httpResponse) in
             
             if let dict = json as? [String: Any], let records = dict["records"] as? [[String: Any]] {
-                completion(records)
+                var customers = [Customer]()
+                for customer in records {
+                    customers.append(Customer(customer))
+                }
+                completion(customers)
             }
             
         })

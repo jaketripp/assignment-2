@@ -30,15 +30,10 @@ import PromiseKit
 
 class RootViewController : UITableViewController {
     // MARK: - DATA
-    var dataRows = [[String: Any]]()
+    var dataRows : [Customer] = [Customer]()
     var APIRequester : ApiRequest = ApiRequest()
     
-    struct DeletedItemInfo {
-        var data: [String:Any]
-        var path: IndexPath
-    }
-    
-    private var deleteRequests = [Int:DeletedItemInfo]()
+    private var deleteRequests = [Int:DeletedCustomerInfo]()
     
     // MARK: - View lifecycle
     override func loadView() {
@@ -78,12 +73,11 @@ class RootViewController : UITableViewController {
         // cell!.imageView!.image = image
         
         // Configure the cell to show the data.
-        let obj = dataRows[indexPath.row]
-        
-        if let name = obj["Name"] as? String, let state = obj["State__c"] as? String {
-            let formattedState = state != nil ? "- \(state)" : ""
-            cell.nameAndState.text = "\(name) \(formattedState)"
-        }
+        let customer = dataRows[indexPath.row]
+        let name = customer.name!
+        let state = customer.state
+        let formattedState = state != nil ? "- \(state!)" : ""
+        cell.nameAndState.text = "\(name) \(formattedState)"
         
         // Central Market Font ??????
         // cell!.textLabel!.font = UIFont(name: "TrendHMSansOne", size: 25)
@@ -108,8 +102,9 @@ class RootViewController : UITableViewController {
         
         let row = indexPath.row
         if (row < self.dataRows.count && editingStyle == UITableViewCellEditingStyle.delete) {
-            let deletedId: String = self.dataRows[row]["Id"] as! String
-            let deletedItemInfo = DeletedItemInfo(data: self.dataRows[row], path:indexPath)
+            let customer = self.dataRows[row]
+            let deletedId: String = customer.id!
+            let deletedCustomerInfo = DeletedCustomerInfo(data: customer, path:indexPath)
             let restApi = SFRestAPI.sharedInstance()
             
             let deleteRequest: SFRestRequest = restApi.requestForDelete(withObjectType: "CM_Customer__c",
@@ -117,7 +112,7 @@ class RootViewController : UITableViewController {
             restApi.Promises.send(request: deleteRequest)
                 .done { [weak self] response  in
                     DispatchQueue.main.async {
-                        self?.deleteRequests[deleteRequest.hashValue] = deletedItemInfo
+                        self?.deleteRequests[deleteRequest.hashValue] = deletedCustomerInfo
                         self?.dataRows.remove(at:row)
                         self?.tableView.reloadData()
                     }
