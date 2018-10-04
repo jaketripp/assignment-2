@@ -18,6 +18,7 @@
 		CC13CDC72166869000DA1F6A /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13CDC62166869000DA1F6A /* TableViewCell.swift */; };
 		CC13CDCA21669D8300DA1F6A /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13CDC921669D8300DA1F6A /* Customer.swift */; };
 		CC13CDCC2166A19D00DA1F6A /* DeletedCustomerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13CDCB2166A19D00DA1F6A /* DeletedCustomerInfo.swift */; };
+		CC13CDD12166AF0500DA1F6A /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC13CDD02166AF0500DA1F6A /* Media.xcassets */; };
 		CEA8CA041F071B2300448B51 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA8CA031F071B2300448B51 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		CC13CDC62166869000DA1F6A /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		CC13CDC921669D8300DA1F6A /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		CC13CDCB2166A19D00DA1F6A /* DeletedCustomerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedCustomerInfo.swift; sourceTree = "<group>"; };
+		CC13CDD02166AF0500DA1F6A /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		CEA8CA031F071B2300448B51 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/Images.xcassets"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -85,6 +87,7 @@
 		4FD6C4771B754AF1002F9F90 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CC13CDCD2166AE5600DA1F6A /* media */,
 				B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */,
 				CEA8CA031F071B2300448B51 /* Images.xcassets */,
 				4FD6C4781B754AF1002F9F90 /* Info.plist */,
@@ -139,6 +142,22 @@
 				CC13CDCB2166A19D00DA1F6A /* DeletedCustomerInfo.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		CC13CDCD2166AE5600DA1F6A /* media */ = {
+			isa = PBXGroup;
+			children = (
+				CC13CDCE2166AE6300DA1F6A /* img */,
+			);
+			name = media;
+			sourceTree = "<group>";
+		};
+		CC13CDCE2166AE6300DA1F6A /* img */ = {
+			isa = PBXGroup;
+			children = (
+				CC13CDD02166AF0500DA1F6A /* Media.xcassets */,
+			);
+			name = img;
 			sourceTree = "<group>";
 		};
 		DDFDDF0A29E4BDD114B51BBC /* Pods */ = {
@@ -219,6 +238,7 @@
 			files = (
 				CC13CDC22166838100DA1F6A /* Root.storyboard in Resources */,
 				CEA8CA041F071B2300448B51 /* Images.xcassets in Resources */,
+				CC13CDD12166AF0500DA1F6A /* Media.xcassets in Resources */,
 				B7168FBC1FACC6F900A48DB5 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--assignment-2-->
         <scene sceneID="6t3-R7-Qti">
             <objects>
                 <tableViewController id="DI2-XC-Yf2" customClass="RootViewController" customModule="assignment_2" customModuleProvider="target" sceneMemberID="viewController">
@@ -44,7 +44,18 @@
                             <outlet property="delegate" destination="DI2-XC-Yf2" id="CQm-uq-qHc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="SJP-Mp-JrQ">
+                    <navigationItem key="navigationItem" title="assignment-2" id="SJP-Mp-JrQ">
+                        <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="Uba-Ey-3aV">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LNa-QR-Dv8" userLabel="AscOrDesc">
+                                <rect key="frame" x="16" y="6" width="38" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="imageEdgeInsets" minX="10" minY="12" maxX="10" maxY="12"/>
+                                <state key="normal" image="asc"/>
+                                <connections>
+                                    <action selector="ascOrDescPressed:" destination="DI2-XC-Yf2" eventType="touchUpInside" id="ZrM-o3-kht"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="wP5-AH-eu0">
                             <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="04y-kW-bU4">
                                 <rect key="frame" x="238" y="7" width="121" height="30"/>
@@ -61,6 +72,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="ascOrDesc" destination="LNa-QR-Dv8" id="d5K-Bc-faK"/>
                         <outlet property="sortSegmentController" destination="04y-kW-bU4" id="Nl0-gm-jF0"/>
                     </connections>
                 </tableViewController>
@@ -87,4 +99,7 @@
             <point key="canvasLocation" x="133.59999999999999" y="-26.53673163418291"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="asc" width="32" height="32"/>
+    </resources>
 </document>

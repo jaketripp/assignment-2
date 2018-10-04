@@ -32,13 +32,12 @@ class RootViewController : UITableViewController {
     // MARK: - DATA
     var dataRows : [Customer] = [Customer]()
     var APIRequester : ApiRequest = ApiRequest()
-    
+    var isAscending : Bool = true
     private var deleteRequests = [Int:DeletedCustomerInfo]()
     
     // MARK: - View lifecycle
     override func loadView() {
         super.loadView()
-        self.title = "Template"
         
         getAndLoadData()
     }
@@ -88,6 +87,12 @@ class RootViewController : UITableViewController {
         return cell
     }
     
+    func reloadTableData() {
+        DispatchQueue.main.async(execute: {
+            self.tableView.reloadData()
+        })
+    }
+    
     
     // MARK: - SORT
     
@@ -98,14 +103,10 @@ class RootViewController : UITableViewController {
         switch scIndex {
             case 0:
                 self.dataRows = sort(self.dataRows, by: .name)
-                DispatchQueue.main.async(execute: {
-                    self.tableView.reloadData()
-                })
+                reloadTableData()
             case 1:
                 self.dataRows = sort(self.dataRows, by: .state)
-                DispatchQueue.main.async(execute: {
-                    self.tableView.reloadData()
-                })
+                reloadTableData()
             default:
                 print("Error: a non-available segment control button was pressed")
         }
@@ -125,6 +126,21 @@ class RootViewController : UITableViewController {
         }
         
     }
+    
+    
+    // MARK: - REVERSE
+    @IBOutlet weak var ascOrDesc: UIButton!
+    @IBAction func ascOrDescPressed(_ sender: UIButton) {
+        isAscending = !isAscending
+        if (isAscending) {
+            ascOrDesc.setImage(UIImage(named: "asc"), for: .normal)
+        } else {
+            ascOrDesc.setImage(UIImage(named: "desc"), for: .normal)
+        }
+        self.dataRows = self.dataRows.reversed()
+        reloadTableData()
+    }
+    
     
     // MARK: - DELETE
     override func tableView(_ tableView: UITableView,
