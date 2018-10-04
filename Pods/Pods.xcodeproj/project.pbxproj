@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -750,7 +750,7 @@
 		03614F58D3D6371BC87343A04731C8BF /* SFSmartSyncObjectUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFSmartSyncObjectUtils.h; sourceTree = "<group>"; };
 		0411676ED8D7DB6EB1CB87EE8ADFD906 /* SFSDKUITableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFSDKUITableViewCell.m; sourceTree = "<group>"; };
 		04ABEEDF444B4F6E883D02EA7E07ED09 /* SFSDKSyncsConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFSDKSyncsConfig.m; sourceTree = "<group>"; };
-		053671A0DAF3251CCB70E34087A815D1 /* SmartStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SmartStore.framework; path = SmartStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		053671A0DAF3251CCB70E34087A815D1 /* SmartStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SmartStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		054FC18A18811A18523E4E64BEE8C732 /* SmartStore-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SmartStore-dummy.m"; sourceTree = "<group>"; };
 		0590349F0A77D10C3EFF96DDB95F4FEC /* SalesforceSwiftLogger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SalesforceSwiftLogger.swift; sourceTree = "<group>"; };
 		05A7705B573DE11372D1D8FC6AB4CFAC /* SFRestRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFRestRequest.m; sourceTree = "<group>"; };
@@ -800,7 +800,7 @@
 		16624489ECF193550742459153839774 /* SFSDKStartURLHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFSDKStartURLHandler.h; sourceTree = "<group>"; };
 		17DC2A560AE177C373049100A085300B /* SFSmartSyncPersistableObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFSmartSyncPersistableObject.h; sourceTree = "<group>"; };
 		1804D831499A1A24D08B55DC89FB2C96 /* SmartStore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SmartStore.xcconfig; sourceTree = "<group>"; };
-		18C7A84C1022576E1344CF51EF690F5F /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PromiseKit.framework; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18C7A84C1022576E1344CF51EF690F5F /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1901120B849082BEB480243D8E444FAA /* SFSDKDevInfoViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFSDKDevInfoViewController.m; sourceTree = "<group>"; };
 		1939738953C6E163603A9E1210AD63D9 /* SFNetwork.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFNetwork.m; sourceTree = "<group>"; };
 		19D6F295A388FA86E7819B55D5DBD48F /* SFLoginViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFLoginViewController.h; sourceTree = "<group>"; };
@@ -835,7 +835,7 @@
 		24C40EF980322B5C2210F93DB0981970 /* NSData+SFSDKUtils_Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSData+SFSDKUtils_Internal.h"; sourceTree = "<group>"; };
 		2540D655FA844F61751B1B06F3487852 /* UIColor+SFColors.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SFColors.m"; sourceTree = "<group>"; };
 		2565EDC72B8D35314359A1E5A0D5A769 /* SFEncryptionKey.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFEncryptionKey.m; sourceTree = "<group>"; };
-		25D25F256FD044E4B2A8CC33FBD86882 /* SQLCipher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SQLCipher.framework; path = SQLCipher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		25D25F256FD044E4B2A8CC33FBD86882 /* SQLCipher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SQLCipher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26DBB9E4A7CE6132D1C677B66660AB35 /* FMResultSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = src/fmdb/FMResultSet.m; sourceTree = "<group>"; };
 		27160266EDD88DEBE15B4204A92B11A4 /* CocoaLumberjack.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CocoaLumberjack.xcconfig; sourceTree = "<group>"; };
 		28AE6A0A9AF7C8EAB28624B8623C0D29 /* SFSDKOAuthClientContext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFSDKOAuthClientContext.h; sourceTree = "<group>"; };
@@ -849,7 +849,7 @@
 		2A603F4D7C2CF97B16809A350E5C5060 /* SFDefaultUserManagementListViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFDefaultUserManagementListViewController.m; sourceTree = "<group>"; };
 		2B01C6FE1A871ED26EFCD7C802B0DE74 /* FMDB.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = src/fmdb/FMDB.h; sourceTree = "<group>"; };
 		2B74AF0A310F57365A06C6768AB90061 /* SFSmartSyncCacheManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFSmartSyncCacheManager.m; sourceTree = "<group>"; };
-		2C329FF823DD808C301CD5F5E225FF65 /* SalesforceAnalytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SalesforceAnalytics.framework; path = SalesforceAnalytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C329FF823DD808C301CD5F5E225FF65 /* SalesforceAnalytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SalesforceAnalytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CEC188F11E8FF2CEED394AFFCBE8C26 /* SFEncryptStream.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFEncryptStream.m; sourceTree = "<group>"; };
 		2D3A599DE052F888A265E9F71A95533F /* SFAlterSoupLongOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFAlterSoupLongOperation.m; sourceTree = "<group>"; };
 		2D48B62545611B35BB76D108C08299FA /* SFKeyStore+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SFKeyStore+Internal.h"; sourceTree = "<group>"; };
@@ -955,7 +955,7 @@
 		535ABBC6E53EA00E103B1244853CA9C3 /* SFRestAPI+QueryBuilder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SFRestAPI+QueryBuilder.h"; sourceTree = "<group>"; };
 		53ABCFFB7088C179B769AE04C03231C9 /* Pods-assignment-2-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-assignment-2-frameworks.sh"; sourceTree = "<group>"; };
 		53F4B88B4E8905884AE1DB1EF7759E28 /* SFSyncUpTarget.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFSyncUpTarget.h; sourceTree = "<group>"; };
-		54373A3205D6CB65DB7E5CC74DB1E423 /* sqlite3.c */ = {isa = PBXFileReference; includeInIndex = 1; path = sqlite3.c; sourceTree = "<group>"; };
+		54373A3205D6CB65DB7E5CC74DB1E423 /* sqlite3.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = sqlite3.c; sourceTree = "<group>"; };
 		54E6755F91A88FB55CA2D7179A74F417 /* SFSDKAuthRequestCommand.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFSDKAuthRequestCommand.m; sourceTree = "<group>"; };
 		55336A78BA43D49E2C4543CC27443D91 /* SFMetadata.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFMetadata.h; sourceTree = "<group>"; };
 		5547197A0423D53F39BDB22CC4AB04E4 /* SFParentChildrenSyncDownTarget.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFParentChildrenSyncDownTarget.h; sourceTree = "<group>"; };
@@ -970,7 +970,7 @@
 		5A7D4F63956658C92C7D6A44BA21040D /* SFLayoutSyncManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFLayoutSyncManager.h; sourceTree = "<group>"; };
 		5B13656A01322001CD3CA03C75B9D152 /* SalesforceSDKCoreDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SalesforceSDKCoreDefines.h; sourceTree = "<group>"; };
 		5B80CFF70D8EDCD46F24ED097C1DAB27 /* SFSoqlSyncDownTarget.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFSoqlSyncDownTarget.h; sourceTree = "<group>"; };
-		5BF8C8E8E51B0D04710B2C6927BCFF27 /* SmartSync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SmartSync.framework; path = SmartSync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BF8C8E8E51B0D04710B2C6927BCFF27 /* SmartSync.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SmartSync.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C0B292A46A030B3CC197F9DA7C5F574 /* SFSDKSyncsConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFSDKSyncsConfig.h; sourceTree = "<group>"; };
 		5C5F7AA3927E8A719FAE7069694C8A35 /* SFAuthenticationManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFAuthenticationManager.h; sourceTree = "<group>"; };
 		5CEBEAE4D2F13E08B60FE1F7904C6A6E /* SFUserAccountManager+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SFUserAccountManager+Internal.h"; sourceTree = "<group>"; };
@@ -1035,7 +1035,7 @@
 		74C2B45894B74E8B8994F4A461DC6391 /* SFCrypto.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFCrypto.h; sourceTree = "<group>"; };
 		755E9C7103F5414E275C80A159FD70A8 /* SFLayoutSyncDownTarget.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFLayoutSyncDownTarget.m; sourceTree = "<group>"; };
 		76068E0BE0C54D9CF32CE021A06C468E /* SFSDKSoslReturningBuilder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFSDKSoslReturningBuilder.m; sourceTree = "<group>"; };
-		76916D871D172E0D958E33FDC60CEBCF /* Pods_assignment_2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_assignment_2.framework; path = "Pods-assignment-2.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		76916D871D172E0D958E33FDC60CEBCF /* Pods_assignment_2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_assignment_2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76C6CD70A79C10E6A8F06ADCC9AB6ACC /* SmartSync-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SmartSync-prefix.pch"; sourceTree = "<group>"; };
 		76E2119B260146BEAAD05519B8FA5377 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77074A4DFE69F376EAD8F3B9929080F0 /* SFAuthenticationManager+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SFAuthenticationManager+Internal.h"; sourceTree = "<group>"; };
@@ -1052,7 +1052,7 @@
 		7D0D4634E3F5244C8863151DC95E4020 /* SFFileProtectionHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFFileProtectionHelper.h; sourceTree = "<group>"; };
 		7D22A0C9CB2C2167E06E9350E8BB4FF7 /* SFManagedPreferences.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFManagedPreferences.m; sourceTree = "<group>"; };
 		7D31670DAD87A03D49E8126B81EA0574 /* SFRefreshSyncDownTarget.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFRefreshSyncDownTarget.m; sourceTree = "<group>"; };
-		7D435359467B308A5861EE061940FFEF /* CocoaLumberjack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CocoaLumberjack.framework; path = CocoaLumberjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D435359467B308A5861EE061940FFEF /* CocoaLumberjack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaLumberjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D947E2F0DACF53CC47652E1623E2E5A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7DC035B542FF735AF30F2071C25A64E1 /* SFPasscodeManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFPasscodeManager.m; sourceTree = "<group>"; };
 		7DEFCC77DF8A6818CA23D1D0ADEDD3C3 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaLumberjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1105,7 +1105,7 @@
 		92F2EC56CCD74BCCB16517D8431D8AE0 /* SFChildrenInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFChildrenInfo.m; sourceTree = "<group>"; };
 		936486A15B6E886CD76DCC489BC8077E /* SFSDKLoginHostStorage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFSDKLoginHostStorage.h; sourceTree = "<group>"; };
 		93A1AE20E7FA2755249C4631112DBE45 /* SFMetadataSyncDownTarget.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFMetadataSyncDownTarget.m; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		942DDADBDE090AF7EEB22B24319523A8 /* SFPasscodeManager+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SFPasscodeManager+Internal.h"; sourceTree = "<group>"; };
 		952304D1F2C801295FC10D1558B076D1 /* UIFont+SFSDKIDP.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIFont+SFSDKIDP.m"; sourceTree = "<group>"; };
 		959972960BE6926B27C7478C19645BDF /* SFSDKLoginHost.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFSDKLoginHost.h; sourceTree = "<group>"; };
@@ -1129,7 +1129,7 @@
 		9C2E12E73C26280FACFA8FF5C064AB19 /* SFSmartSyncPersistableObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFSmartSyncPersistableObject.m; sourceTree = "<group>"; };
 		9C76E56031FA1696E45723AD7AFA6EC4 /* SFSmartStoreUpgrade+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SFSmartStoreUpgrade+Internal.h"; sourceTree = "<group>"; };
 		9D2C892122A3B81D715FF68973539EBF /* SFSDKAdvancedAuthURLHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFSDKAdvancedAuthURLHandler.h; sourceTree = "<group>"; };
-		9DABDC109D3BBA00C0C54AB3F2D80867 /* SmartStore.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = SmartStore.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9DABDC109D3BBA00C0C54AB3F2D80867 /* SmartStore.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = SmartStore.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E1D046FDC1E23B3E1E3395D0727C1A2 /* SFSDKSalesforceAnalyticsManager+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SFSDKSalesforceAnalyticsManager+Internal.h"; sourceTree = "<group>"; };
 		9E29FD29F33C70A32EA3443089624BD2 /* SalesforceSDKCore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SalesforceSDKCore.h; path = libs/SalesforceSDKCore/SalesforceSDKCore/SalesforceSDKCore.h; sourceTree = "<group>"; };
 		9EA210F10FD3B0ECAF8A47EA28A7868C /* SFSDKTestCredentialsData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFSDKTestCredentialsData.m; sourceTree = "<group>"; };
@@ -1153,8 +1153,8 @@
 		A3EF8FEAE8BE0D48C5BCB279DDFA4762 /* SFOAuthCredentials+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SFOAuthCredentials+Internal.h"; sourceTree = "<group>"; };
 		A4EB2171D1CBAC597C4A84A0AA847088 /* UIScreen+SFAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIScreen+SFAdditions.h"; sourceTree = "<group>"; };
 		A6094213FB9F14C94515BA19E28F007B /* SFSmartStoreDatabaseManager+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SFSmartStoreDatabaseManager+Internal.h"; sourceTree = "<group>"; };
-		A6458475331EFDE4E7E2207B913E0236 /* SmartSync.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = SmartSync.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A6750B9C1A0B9CACA4E688353C07981A /* SalesforceSwiftSDK.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = SalesforceSwiftSDK.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A6458475331EFDE4E7E2207B913E0236 /* SmartSync.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = SmartSync.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A6750B9C1A0B9CACA4E688353C07981A /* SalesforceSwiftSDK.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = SalesforceSwiftSDK.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A73F84EADEA2F6EA7752C7AA13D8678B /* SFSDKLoginHostStorage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFSDKLoginHostStorage.m; sourceTree = "<group>"; };
 		A78BF5432C0BA6CBBB991ED377E94344 /* SFSDKSafeMutableDictionary.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFSDKSafeMutableDictionary.m; sourceTree = "<group>"; };
 		A83C92CF2CABBB6E89E970710DF4BD17 /* SFSDKNavigationController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFSDKNavigationController.m; sourceTree = "<group>"; };
@@ -1174,7 +1174,7 @@
 		AE774C6FDA80E743E6E43A1FFBB0FD66 /* PromiseKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PromiseKit-umbrella.h"; sourceTree = "<group>"; };
 		AED1A5F197D1099E14DC59A048CEE462 /* SFSDKLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFSDKLogger.m; sourceTree = "<group>"; };
 		AF14813E0257B5886C9FBF44557227BA /* race.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = race.swift; path = Sources/race.swift; sourceTree = "<group>"; };
-		B09BD454F71BD0642D0777E2CB1DFADA /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = en.lproj; path = shared/resources/SalesforceSDKResources.bundle/en.lproj; sourceTree = "<group>"; };
+		B09BD454F71BD0642D0777E2CB1DFADA /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = en.lproj; path = shared/resources/SalesforceSDKResources.bundle/en.lproj; sourceTree = "<group>"; };
 		B26544F20756484DA6DA13874FADAB0E /* SFOAuthCoordinator+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SFOAuthCoordinator+Internal.h"; sourceTree = "<group>"; };
 		B2917D4F7E387E6C9E0EE3926F9EF29D /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B29331047C9BFAD962D2FA0EDDC9E0CE /* SFSDKAuthResponseCommand.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFSDKAuthResponseCommand.m; sourceTree = "<group>"; };
@@ -1204,7 +1204,7 @@
 		BBCB08626AEE0475FE2F741C10C06F51 /* SFSDKAppFeatureMarkers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFSDKAppFeatureMarkers.h; sourceTree = "<group>"; };
 		BC22AB16AC2FB06EF23C17286EB401EB /* SFSyncTarget.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFSyncTarget.h; sourceTree = "<group>"; };
 		BC7CB6C94FA5024981C0E732F63187B4 /* SFSDKAuthViewHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFSDKAuthViewHandler.m; sourceTree = "<group>"; };
-		BCCF882B6B83C5322F28C04F58237A2F /* SalesforceSDKResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = SalesforceSDKResources.bundle; path = "SalesforceSDKCore-SalesforceSDKResources.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCCF882B6B83C5322F28C04F58237A2F /* SalesforceSDKResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalesforceSDKResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCF2739046D20BF2F447CAA9C18D7A87 /* SFOAuthCredentials.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFOAuthCredentials.m; sourceTree = "<group>"; };
 		BD18A164E1751F6D79E1CF2C6DB69BB5 /* SFInactivityTimerCenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFInactivityTimerCenter.h; sourceTree = "<group>"; };
 		BF453BB77FACD8744D2F5DC20CB0A510 /* SFStoreCursor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFStoreCursor.h; sourceTree = "<group>"; };
@@ -1256,13 +1256,13 @@
 		D1AD1505791A7BDBF08E940EE91127A0 /* SFTestContext.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFTestContext.m; sourceTree = "<group>"; };
 		D3010B6905BAD29509B217B905BE7F88 /* SFParentInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFParentInfo.m; sourceTree = "<group>"; };
 		D32BF9C0691B7CA8B31A7DDA50992190 /* SFQuerySpec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFQuerySpec.h; sourceTree = "<group>"; };
-		D33EEE47ECEF6F91ADD5855D67FB7C7A /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FMDB.framework; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D33EEE47ECEF6F91ADD5855D67FB7C7A /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D37C561C7E60A4E8BA637CF38467B99A /* SFSDKLoginFlowSelectionViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFSDKLoginFlowSelectionViewController.m; sourceTree = "<group>"; };
 		D4A891244F62A383C76239C9A5AFF937 /* dispatch_promise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = dispatch_promise.m; path = Sources/dispatch_promise.m; sourceTree = "<group>"; };
 		D4B6FE2E5E60085AC2593E94DCA53719 /* SFUserAccountManager+URLHandlers.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SFUserAccountManager+URLHandlers.m"; sourceTree = "<group>"; };
 		D529E196E730E2107219759246895B2A /* SalesforceSwiftSDK-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SalesforceSwiftSDK-dummy.m"; sourceTree = "<group>"; };
 		D5E9DC89528009428519F5B8658042AC /* SFApplicationHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFApplicationHelper.m; sourceTree = "<group>"; };
-		D6032A41B0E6649758D8E41DE50CB9DA /* SalesforceSDKCore.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = SalesforceSDKCore.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		D6032A41B0E6649758D8E41DE50CB9DA /* SalesforceSDKCore.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = SalesforceSDKCore.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D6126E4357CC24BF15BD43891395D973 /* SalesforceSwiftSDK-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SalesforceSwiftSDK-umbrella.h"; sourceTree = "<group>"; };
 		D61CD284BF7FF16D21147E9436291ECA /* SFSDKCoreLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFSDKCoreLogger.h; sourceTree = "<group>"; };
 		D672537FB8C10EF62AB61012C33B3122 /* NSDictionary+SFAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SFAdditions.h"; sourceTree = "<group>"; };
@@ -1270,7 +1270,7 @@
 		D77B29B56C4BC6092F536A68E2FE6B3C /* SFAuthenticationManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFAuthenticationManager.m; sourceTree = "<group>"; };
 		D77FE50A8AE6E1380F803A958A2C92F7 /* SmartSync.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SmartSync.xcconfig; sourceTree = "<group>"; };
 		D7A7D73C8A05FD8741A7E571031BBE66 /* SFAbstractPasscodeViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFAbstractPasscodeViewController.m; sourceTree = "<group>"; };
-		D8212BD4FCFA1293DCC46F5B46642D25 /* SalesforceSwiftSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SalesforceSwiftSDK.framework; path = SalesforceSwiftSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8212BD4FCFA1293DCC46F5B46642D25 /* SalesforceSwiftSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SalesforceSwiftSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D83304477A47CA4CC23E242741919ECE /* SFPasscodeProviderManager+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SFPasscodeProviderManager+Internal.h"; sourceTree = "<group>"; };
 		D83955AD48A4C2E03892C018906859CD /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDAbstractDatabaseLogger.m; path = Classes/DDAbstractDatabaseLogger.m; sourceTree = "<group>"; };
 		D9DE11DC55419ED95773B70A89F79CAF /* SFSDKInstrumentationEvent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFSDKInstrumentationEvent.m; sourceTree = "<group>"; };
@@ -1301,7 +1301,7 @@
 		E4C680B1CD300F6A301277E60EC888CF /* SalesforceSDKCore-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SalesforceSDKCore-dummy.m"; sourceTree = "<group>"; };
 		E519F11D497D03E2F87CC5946FF2065A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		E51DC8517CBAC4401C4B89E2A6A9250D /* SFSDKReachability.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFSDKReachability.m; sourceTree = "<group>"; };
-		E5734B65C4AD1D7961E9E85C6B97C470 /* SalesforceAnalytics.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = SalesforceAnalytics.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		E5734B65C4AD1D7961E9E85C6B97C470 /* SalesforceAnalytics.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = SalesforceAnalytics.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E5F9F765D7970C522DC1A2EACBB32044 /* SFSDKSmartStoreLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFSDKSmartStoreLogger.h; sourceTree = "<group>"; };
 		E638C6F855CC05017F0FFF691350CF84 /* FMDatabasePool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = src/fmdb/FMDatabasePool.h; sourceTree = "<group>"; };
 		E735B43B355A51A4210DC8199D292332 /* SFSDKDatasharingHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFSDKDatasharingHelper.h; sourceTree = "<group>"; };
@@ -1312,7 +1312,7 @@
 		E89623769353FAFF3D709AADA61CFC0A /* SFSDKUserSelectionView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFSDKUserSelectionView.h; sourceTree = "<group>"; };
 		E9F06B45ED257622B7D90EBD4FD03DF2 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabaseQueue.h; path = src/fmdb/FMDatabaseQueue.h; sourceTree = "<group>"; };
 		EA5B4F0B060EAAA4D9F21A07872924B2 /* NSNotificationCenter+SFAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSNotificationCenter+SFAdditions.h"; path = "libs/SalesforceSDKCore/SalesforceSDKCore/Classes/Common/NSNotificationCenter+SFAdditions.h"; sourceTree = "<group>"; };
-		EAC2EC4DDE15CD07A5D7904537137FE7 /* SalesforceSDKCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SalesforceSDKCore.framework; path = SalesforceSDKCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAC2EC4DDE15CD07A5D7904537137FE7 /* SalesforceSDKCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SalesforceSDKCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB1E1844C1DAD29137E220ECDB6582AF /* SFFileProtectionHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFFileProtectionHelper.m; sourceTree = "<group>"; };
 		EBD2DBE82B11697C06D8B74F51C32D73 /* SFSDKSafeMutableSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFSDKSafeMutableSet.h; sourceTree = "<group>"; };
 		ED369B08397789FCF06CDAD8B19260D2 /* SalesforceSDKCore-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SalesforceSDKCore-prefix.pch"; sourceTree = "<group>"; };
@@ -1352,7 +1352,7 @@
 		FCF9887C3FD35791CDF90A9DC7B13ECA /* SFUserAccountManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SFUserAccountManager.m; sourceTree = "<group>"; };
 		FE28A788143C34E7544DF393E2614862 /* DDMultiFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDMultiFormatter.m; path = Classes/Extensions/DDMultiFormatter.m; sourceTree = "<group>"; };
 		FED90086F6A3A382629F0929FC0370FB /* SFRestAPI+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SFRestAPI+Internal.h"; sourceTree = "<group>"; };
-		FEE6C56E95F6C4B6B38AB1B0172D4002 /* LICENSE.md */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE.md; sourceTree = "<group>"; };
+		FEE6C56E95F6C4B6B38AB1B0172D4002 /* LICENSE.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		FF604F697B919D9A8407EE5F3AD2FE96 /* SFOAuthCredentials.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFOAuthCredentials.h; sourceTree = "<group>"; };
 		FF738CB2A14B05B48F19E876EBEA65BF /* SFSDKAnalyticsManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SFSDKAnalyticsManager.h; sourceTree = "<group>"; };
 		FFDA080CFB007EB286F392DA6C8B85DF /* SFSDKInstrumentationEvent+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SFSDKInstrumentationEvent+Internal.h"; sourceTree = "<group>"; };
@@ -1496,7 +1496,6 @@
 				28AE6A0A9AF7C8EAB28624B8623C0D29 /* SFSDKOAuthClientContext.h */,
 				861C7DFF878F9496E5CB2F90A9AA2518 /* SFSDKOAuthClientContext.m */,
 			);
-			name = OAuth;
 			path = OAuth;
 			sourceTree = "<group>";
 		};
@@ -1582,7 +1581,6 @@
 				EE381A2ABAB3490728B8EF88E6E0B862 /* UIColor+SFColors.h */,
 				2540D655FA844F61751B1B06F3487852 /* UIColor+SFColors.m */,
 			);
-			name = Util;
 			path = Util;
 			sourceTree = "<group>";
 		};
@@ -1690,7 +1688,6 @@
 				83ECCDAADF6AD9DCE26617F71FCFBD86 /* TestSetupUtils.h */,
 				35F37CBB78C3971CEE36821C81D88837 /* TestSetupUtils.m */,
 			);
-			name = Test;
 			path = Test;
 			sourceTree = "<group>";
 		};
@@ -1708,7 +1705,6 @@
 				C58C83E17F31D670D70C8BE8829C9E00 /* SFSDKEventStoreManager.h */,
 				82AE9E7D2A0951699C4B57B8BD302848 /* SFSDKEventStoreManager.m */,
 			);
-			name = Store;
 			path = Store;
 			sourceTree = "<group>";
 		};
@@ -1799,7 +1795,6 @@
 				F3968EA788C91F42A15C252070FFB2D8 /* SFPushNotificationManager.h */,
 				4D576C7D7789D79845F3C732B10993BE /* SFPushNotificationManager.m */,
 			);
-			name = PushNotification;
 			path = PushNotification;
 			sourceTree = "<group>";
 		};
@@ -1824,7 +1819,6 @@
 				C7FD02EBAE6A9A019ED24A58E8614CAE /* SFSDKAnalyticsManager.m */,
 				B7E85D4E4148786C2B4FB8EF89FA4631 /* SFSDKAnalyticsManager+Internal.h */,
 			);
-			name = Manager;
 			path = Manager;
 			sourceTree = "<group>";
 		};
@@ -1840,7 +1834,6 @@
 				1A3BFC6B8320A802E517AD9EC6ECADD1 /* SFSDKSalesforceAnalyticsManager.m */,
 				9E1D046FDC1E23B3E1E3395D0727C1A2 /* SFSDKSalesforceAnalyticsManager+Internal.h */,
 			);
-			name = Analytics;
 			path = Analytics;
 			sourceTree = "<group>";
 		};
@@ -1881,7 +1874,6 @@
 				868F4F7BFC24C5B4EAF8A513054C8E2D /* SFSDKReachability.h */,
 				E51DC8517CBAC4401C4B89E2A6A9250D /* SFSDKReachability.m */,
 			);
-			name = Util;
 			path = Util;
 			sourceTree = "<group>";
 		};
@@ -1903,7 +1895,6 @@
 				595B82ADFD1257DE8AD89D4874328ED1 /* SFMethodInterceptor.h */,
 				F14DBBA7128E236D07293C728BA0E949 /* SFMethodInterceptor.m */,
 			);
-			name = Instrumentation;
 			path = Instrumentation;
 			sourceTree = "<group>";
 		};
@@ -1954,7 +1945,6 @@
 				67406013533EE481B98CB99428543C37 /* SFSDKURLHandlerManager.h */,
 				00441096C6BFDFF38579E9F342AABF91 /* SFSDKURLHandlerManager.m */,
 			);
-			name = URLHandlers;
 			path = URLHandlers;
 			sourceTree = "<group>";
 		};
@@ -1980,7 +1970,6 @@
 				4A7554C8B84AD0F1C89CFCAD643E1BD9 /* SFSyncState.h */,
 				8BA08FA7C019AAC83342C28129292485 /* SFSyncState.m */,
 			);
-			name = Util;
 			path = Util;
 			sourceTree = "<group>";
 		};
@@ -2051,7 +2040,6 @@
 				A4EB2171D1CBAC597C4A84A0AA847088 /* UIScreen+SFAdditions.h */,
 				DC77E3FDB90542260C1CF5B1ECBDDC68 /* UIScreen+SFAdditions.m */,
 			);
-			name = Common;
 			path = Common;
 			sourceTree = "<group>";
 		};
@@ -2070,7 +2058,6 @@
 				5074DD782CD9DCA8B6250FC2D52CD389 /* SFSDKTextFieldTableViewCell.h */,
 				2F19F6BD0607554A940F6A6C7FA90B52 /* SFSDKTextFieldTableViewCell.m */,
 			);
-			name = LoginHost;
 			path = LoginHost;
 			sourceTree = "<group>";
 		};
@@ -2103,7 +2090,6 @@
 				6C9F3A644080DAF9B250FE943A3358A3 /* SQLCipher */,
 				A7E5144C00CFD7F29C501BB382087AC9 /* Support Files */,
 			);
-			name = FMDB;
 			path = FMDB;
 			sourceTree = "<group>";
 		};
@@ -2147,7 +2133,6 @@
 				4987EA850A103C5FDD395AAD89D99228 /* SFSObjectTree.h */,
 				7C5E7428244C7634170302A16CB8E0F9 /* SFSObjectTree.m */,
 			);
-			name = RestAPI;
 			path = RestAPI;
 			sourceTree = "<group>";
 		};
@@ -2165,7 +2150,6 @@
 			children = (
 				1D656D22EAC7C274B066C019C48F7D24 /* SFSDKAppDelegate.h */,
 			);
-			name = Protocols;
 			path = Protocols;
 			sourceTree = "<group>";
 		};
@@ -2203,7 +2187,6 @@
 				B8A68BDFF7A27EA60D610C7D2699D76F /* SFSDKInstrumentationEventBuilder.h */,
 				4354F8BB422999EBC0E8514E853E24D7 /* SFSDKInstrumentationEventBuilder.m */,
 			);
-			name = Model;
 			path = Model;
 			sourceTree = "<group>";
 		};
@@ -2288,7 +2271,6 @@
 				EED9FC9E2AC9155592540F4DE27CDD88 /* SFUserAccountManager+URLHandlers.h */,
 				D4B6FE2E5E60085AC2593E94DCA53719 /* SFUserAccountManager+URLHandlers.m */,
 			);
-			name = Security;
 			path = Security;
 			sourceTree = "<group>";
 		};
@@ -2312,7 +2294,6 @@
 				4F302335E332E090D61F23196CA7CC09 /* SFSDKLogger.h */,
 				AED1A5F197D1099E14DC59A048CEE462 /* SFSDKLogger.m */,
 			);
-			name = Logger;
 			path = Logger;
 			sourceTree = "<group>";
 		};
@@ -2348,7 +2329,6 @@
 				06D3B111FB71B1FA2D54F996FB06F895 /* SFSDKLoginViewControllerConfig.m */,
 				75608818D0B46B26071B11C624774AA9 /* LoginHost */,
 			);
-			name = Login;
 			path = Login;
 			sourceTree = "<group>";
 		};
@@ -2358,7 +2338,6 @@
 				42550C9A988DC6EE77A1A1E48E7DD9C5 /* CorePromise */,
 				4A016140CA5F17C05D54EB4386A4C09D /* Support Files */,
 			);
-			name = PromiseKit;
 			path = PromiseKit;
 			sourceTree = "<group>";
 		};
@@ -2404,7 +2383,6 @@
 				FC7FE5414976B783F17A373CB7A82E7D /* SFIdentityData.m */,
 				133D1A1FEB0DB5CEDDFCBCA08825AE3E /* SFIdentityData+Internal.h */,
 			);
-			name = Identity;
 			path = Identity;
 			sourceTree = "<group>";
 		};
@@ -2429,7 +2407,6 @@
 				7823793C8BF6DD7D3BDD7D04E81D17A9 /* SFSDKAILTNTransform.m */,
 				3EE11617AEACAF1026CA849C1B6C4DC3 /* SFSDKTransform.h */,
 			);
-			name = Transform;
 			path = Transform;
 			sourceTree = "<group>";
 		};
@@ -2507,7 +2484,6 @@
 				5D54E43DA92A1CB49170E286593AC40C /* SmartSyncSDKManager.h */,
 				400EAA3CEBBC73BC1293417C9F7B5348 /* SmartSyncSDKManager.m */,
 			);
-			name = Manager;
 			path = Manager;
 			sourceTree = "<group>";
 		};
@@ -2543,7 +2519,6 @@
 				AFA073090E84B27C3A08F37F81346268 /* common */,
 				8C6230202C5FBD8748C69D0DFCD9F9F1 /* Support Files */,
 			);
-			name = SQLCipher;
 			path = SQLCipher;
 			sourceTree = "<group>";
 		};
@@ -2553,7 +2528,6 @@
 				5C0B292A46A030B3CC197F9DA7C5F574 /* SFSDKSyncsConfig.h */,
 				04ABEEDF444B4F6E883D02EA7E07ED09 /* SFSDKSyncsConfig.m */,
 			);
-			name = Config;
 			path = Config;
 			sourceTree = "<group>";
 		};
@@ -2579,7 +2553,6 @@
 				0901A7D1DA40CBDFBE0F8BC8131B4E91 /* SFSDKWindowManager.h */,
 				1D688DCC7860E4AFD22882A6E941C5F5 /* SFSDKWindowManager.m */,
 			);
-			name = Views;
 			path = Views;
 			sourceTree = "<group>";
 		};
@@ -2611,7 +2584,6 @@
 				9C2E12E73C26280FACFA8FF5C064AB19 /* SFSmartSyncPersistableObject.m */,
 				B346D608922E7EA3BB4B48CFE3720D88 /* SFSmartSyncPersistableObject+Internal.h */,
 			);
-			name = Model;
 			path = Model;
 			sourceTree = "<group>";
 		};
@@ -2655,7 +2627,6 @@
 				43D1A80BE2FBBCE99063E67FB21A98B7 /* SFSyncUpTarget.m */,
 				890F44182CDB8B070D5F0DFE93B29220 /* SFSyncUpTarget+Internal.h */,
 			);
-			name = Target;
 			path = Target;
 			sourceTree = "<group>";
 		};
@@ -2667,7 +2638,6 @@
 				1FDB065BACEA3D12B1E0E9F53CF3E476 /* Extensions */,
 				59BB97DC8129AC5ACB3FA5F08702CB02 /* Support Files */,
 			);
-			name = CocoaLumberjack;
 			path = CocoaLumberjack;
 			sourceTree = "<group>";
 		};
@@ -2716,7 +2686,6 @@
 				472DE4A0E8978B4D1E33F021C08243B6 /* UIFont+SFSDKIDP.h */,
 				952304D1F2C801295FC10D1558B076D1 /* UIFont+SFSDKIDP.m */,
 			);
-			name = IDP;
 			path = IDP;
 			sourceTree = "<group>";
 		};
@@ -3349,7 +3318,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 0940;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -4085,6 +4054,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
@@ -4175,8 +4145,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -4467,8 +4436,7 @@
 				PRODUCT_NAME = Pods_assignment_2;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -4625,8 +4593,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
