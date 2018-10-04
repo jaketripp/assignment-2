@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import SalesforceSDKCore
-import SalesforceSwiftSDK
-import PromiseKit
 
 struct Customer {
     var name    : String?
@@ -31,16 +28,4 @@ struct Customer {
         self.id     = data["Id"] as? String
         self.fields = ["Time_Email_Sent__c" : ""]
     }
-    
-    /// Return customer content in large formatted string
-//    func toString() -> String {
-//        return """
-//        Name: \(self.name ?? "")
-//        Email: \(self.email ?? "")
-//        Address: \(self.street ?? "")
-//        City: \(self.city ?? "")
-//        State: \(self.state ?? "")
-//        Zip: \(self.zip != nil ? String(zip!) : "")
-//        """
-//    }
 }
