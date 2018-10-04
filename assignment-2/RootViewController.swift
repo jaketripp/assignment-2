@@ -120,9 +120,17 @@ class RootViewController : UITableViewController {
     func sort(_ customers: [Customer], by whatToSortBy: sortBy) -> [Customer] {
         switch whatToSortBy {
             case .name:
-                return customers.sorted { $0.name ?? "" < $1.name ?? "" }
+                if (isAscending) {
+                    return customers.sorted { $0.name ?? "" < $1.name ?? "" }
+                } else {
+                    return customers.sorted { $0.name ?? "" > $1.name ?? "" }
+                }
             case .state:
-                return customers.sorted { $0.state ?? "" < $1.state ?? "" }
+                if (isAscending) {
+                    return customers.sorted { $0.state ?? "" < $1.state ?? "" }
+                } else {
+                    return customers.sorted { $0.state ?? "" > $1.state ?? "" }
+                }
         }
         
     }
