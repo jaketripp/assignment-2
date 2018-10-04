@@ -100,14 +100,14 @@
 		4FD6C4A11B755265002F9F90 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4FD6C49A1B755242002F9F90 /* Bridging-Header.h */,
+				4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */,
+				4FD6C49D1B755242002F9F90 /* InitialViewController.swift */,
+				4F393A281C3C8BCD00B3EA13 /* main.swift */,
+				CC13CDC32166849400DA1F6A /* Controllers */,
 				CC13CDD22166B55100DA1F6A /* Helpers */,
 				CC13CDC821669D3700DA1F6A /* Models */,
-				CC13CDC32166849400DA1F6A /* Controllers */,
 				CC13CDC02166836B00DA1F6A /* Views */,
-				4FD6C49A1B755242002F9F90 /* Bridging-Header.h */,
-				4FD6C49D1B755242002F9F90 /* InitialViewController.swift */,
-				4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */,
-				4F393A281C3C8BCD00B3EA13 /* main.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
