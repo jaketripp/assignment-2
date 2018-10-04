@@ -15,7 +15,7 @@ class ApiRequest: NSObject {
     
     func getDataRows(completion: @escaping (([Customer]) -> Void)) {
         let restApi = SFRestAPI.sharedInstance()
-        let soqlQuery = "SELECT Name, State__c, Id FROM CM_Customer__c WHERE Name = 'Jake Tripp' LIMIT 10"
+        let soqlQuery = "SELECT Id, Name, Email__c, Address__c, City__c, State__c, Zip__c, LastModifiedDate FROM CM_Customer__c WHERE State__c != NULL ORDER BY LastModifiedDate DESC LIMIT 25"
         
         restApi.performSOQLQuery(soqlQuery, fail: { (error, response) in
             
