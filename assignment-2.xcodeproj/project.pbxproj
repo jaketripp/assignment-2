@@ -19,6 +19,7 @@
 		CC13CDCA21669D8300DA1F6A /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13CDC921669D8300DA1F6A /* Customer.swift */; };
 		CC13CDCC2166A19D00DA1F6A /* DeletedCustomerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13CDCB2166A19D00DA1F6A /* DeletedCustomerInfo.swift */; };
 		CC13CDD12166AF0500DA1F6A /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC13CDD02166AF0500DA1F6A /* Media.xcassets */; };
+		CC13CDD42166B57600DA1F6A /* Ext_Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13CDD32166B57600DA1F6A /* Ext_Color.swift */; };
 		CEA8CA041F071B2300448B51 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA8CA031F071B2300448B51 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		CC13CDC921669D8300DA1F6A /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		CC13CDCB2166A19D00DA1F6A /* DeletedCustomerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedCustomerInfo.swift; sourceTree = "<group>"; };
 		CC13CDD02166AF0500DA1F6A /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		CC13CDD32166B57600DA1F6A /* Ext_Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_Color.swift; sourceTree = "<group>"; };
 		CEA8CA031F071B2300448B51 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/Images.xcassets"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -98,6 +100,7 @@
 		4FD6C4A11B755265002F9F90 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CC13CDD22166B55100DA1F6A /* Helpers */,
 				CC13CDC821669D3700DA1F6A /* Models */,
 				CC13CDC32166849400DA1F6A /* Controllers */,
 				CC13CDC02166836B00DA1F6A /* Views */,
@@ -158,6 +161,14 @@
 				CC13CDD02166AF0500DA1F6A /* Media.xcassets */,
 			);
 			name = img;
+			sourceTree = "<group>";
+		};
+		CC13CDD22166B55100DA1F6A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CC13CDD32166B57600DA1F6A /* Ext_Color.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		DDFDDF0A29E4BDD114B51BBC /* Pods */ = {
@@ -328,6 +339,7 @@
 				CC13CDC72166869000DA1F6A /* TableViewCell.swift in Sources */,
 				CC13CDC5216684C600DA1F6A /* ApiRequest.swift in Sources */,
 				4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */,
+				CC13CDD42166B57600DA1F6A /* Ext_Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

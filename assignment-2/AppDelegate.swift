@@ -73,6 +73,7 @@ class AppDelegate : UIResponder, UIApplicationDelegate {
     // MARK: - App delegate lifecycle
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.tintColor = UIColor.CMgreen
         self.initializeAppViewState();
         
         // If you wish to register for push notifications, uncomment the line below.  Note that,
