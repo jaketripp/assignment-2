@@ -29,8 +29,16 @@ import SalesforceSwiftSDK
 import PromiseKit
 
 class RootViewController : UITableViewController {
+    // MARK: - DATA
     var dataRows = [[String: Any]]()
     var APIRequester : ApiRequest = ApiRequest()
+    
+    struct DeletedItemInfo {
+        var data: [String:Any]
+        var path: IndexPath
+    }
+    
+    private var deleteRequests = [Int:DeletedItemInfo]()
     
     // MARK: - View lifecycle
     override func loadView() {
@@ -84,5 +92,71 @@ class RootViewController : UITableViewController {
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
         return cell
+    }
+    
+    // MARK: - DELETE
+    override func tableView(_ tableView: UITableView,
+                            editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        if (indexPath.row < self.dataRows.count) {
+            return UITableViewCellEditingStyle.delete
+        } else {
+            return UITableViewCellEditingStyle.none
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        let row = indexPath.row
+        if (row < self.dataRows.count && editingStyle == UITableViewCellEditingStyle.delete) {
+            let deletedId: String = self.dataRows[row]["Id"] as! String
+            let deletedItemInfo = DeletedItemInfo(data: self.dataRows[row], path:indexPath)
+            let restApi = SFRestAPI.sharedInstance()
+            
+            let deleteRequest: SFRestRequest = restApi.requestForDelete(withObjectType: "CM_Customer__c",
+                                                                        objectId: deletedId)
+            restApi.Promises.send(request: deleteRequest)
+                .done { [weak self] response  in
+                    DispatchQueue.main.async {
+                        self?.deleteRequests[deleteRequest.hashValue] = deletedItemInfo
+                        self?.dataRows.remove(at:row)
+                        self?.tableView.reloadData()
+                    }
+                }
+                .catch{ [weak self] error in
+                    let e = error as NSError
+                    self?.reinstateDeletedRowWithRequest(deleteRequest)
+                    self?.showErrorAlert(e as NSError, request: deleteRequest)
+                }
+        }
+    }
+    
+    func reinstateDeletedRowWithRequest(_ request:SFRestRequest) {
+        // Reinsert deleted rows if the operation is DELETE and the ID matches the deleted ID.
+        // The trouble is, the NSError parameter doesn't give us that info, so we can't really
+        // judge which row caused this error.
+        
+        DispatchQueue.main.async {
+            if let rowValue = self.deleteRequests[request.hashValue] {
+                // the beginning of the dataRows dictionary (index 0).
+                self.dataRows.insert(rowValue.data, at: 0)
+                self.tableView.reloadData()
+                self.deleteRequests.removeValue(forKey: request.hashValue as Int)
+            }
+        }
+    }
+    
+    private func showErrorAlert(_ error: NSError, request: SFRestRequest) {
+        DispatchQueue.main.async {
+            let errArray = error.userInfo["error"] as! [Any]
+            if errArray.count > 0 {
+//                let dictionary =  errArray[0] as! [String:Any]
+//                let message = (dictionary["message"] as? String) ?? "Failed to delete item"
+                let message = "Something went wrong. Sorry! Please try again later."
+                let title = "Failed to delete customer"
+                let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
 }
