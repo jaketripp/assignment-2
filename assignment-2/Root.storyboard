@@ -44,11 +44,29 @@
                             <outlet property="delegate" destination="DI2-XC-Yf2" id="CQm-uq-qHc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="SJP-Mp-JrQ"/>
+                    <navigationItem key="navigationItem" id="SJP-Mp-JrQ">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="wP5-AH-eu0">
+                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="04y-kW-bU4">
+                                <rect key="frame" x="238" y="7" width="121" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Name"/>
+                                    <segment title="State"/>
+                                </segments>
+                                <color key="tintColor" red="0.0" green="0.41176470590000003" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="sortTapped:" destination="DI2-XC-Yf2" eventType="valueChanged" id="PU4-4h-EQX"/>
+                                </connections>
+                            </segmentedControl>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="sortSegmentController" destination="04y-kW-bU4" id="Nl0-gm-jF0"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVg-V3-kNb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1072.8" y="-26.53673163418291"/>
+            <point key="canvasLocation" x="1223" y="-27"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UCW-lZ-Q2B">

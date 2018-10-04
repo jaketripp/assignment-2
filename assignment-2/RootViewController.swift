@@ -45,7 +45,7 @@ class RootViewController : UITableViewController {
     
     func getAndLoadData() {
         APIRequester.getDataRows { (response) in
-            self.dataRows = response
+            self.dataRows = self.sort(response, by: .name)
             SalesforceSwiftLogger.log(type(of:self), level:.debug, message:"request:didLoadResponse: #records: \(self.dataRows.count)")
             DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
@@ -86,6 +86,44 @@ class RootViewController : UITableViewController {
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
         return cell
+    }
+    
+    
+    // MARK: - SORT
+    
+    @IBOutlet weak var sortSegmentController: UISegmentedControl!
+    
+    @IBAction func sortTapped(_ sender: UISegmentedControl) {
+        let scIndex = sortSegmentController.selectedSegmentIndex
+        switch scIndex {
+            case 0:
+                self.dataRows = sort(self.dataRows, by: .name)
+                DispatchQueue.main.async(execute: {
+                    self.tableView.reloadData()
+                })
+            case 1:
+                self.dataRows = sort(self.dataRows, by: .state)
+                DispatchQueue.main.async(execute: {
+                    self.tableView.reloadData()
+                })
+            default:
+                print("Error: a non-available segment control button was pressed")
+        }
+    }
+    
+    enum sortBy {
+        case name
+        case state
+    }
+    
+    func sort(_ customers: [Customer], by whatToSortBy: sortBy) -> [Customer] {
+        switch whatToSortBy {
+            case .name:
+                return customers.sorted { $0.name ?? "" < $1.name ?? "" }
+            case .state:
+                return customers.sorted { $0.state ?? "" < $1.state ?? "" }
+        }
+        
     }
     
     // MARK: - DELETE
