@@ -14,9 +14,8 @@ struct Customer {
     var street  : String?
     var city    : String?
     var state   : String?
-    var zip     : Int?
+    var zip     : String?
     var id      : String?
-    var fields  : [String : Any]
     
     init(_ data: [String: Any]) {
         self.name   = data["Name"] as? String
@@ -24,8 +23,7 @@ struct Customer {
         self.street = data["Address__c"] as? String
         self.city   = data["City__c"] as? String
         self.state  = data["State__c"] as? String
-        self.zip    = data["Zip__c"] as? Int
+        self.zip    = data["Zip__c"] as? String
         self.id     = data["Id"] as? String
-        self.fields = ["Time_Email_Sent__c" : ""]
     }
 }
