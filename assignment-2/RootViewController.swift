@@ -103,17 +103,15 @@ class RootViewController : UITableViewController {
         switch scIndex {
         case 0:
             self.dataRows = sort(self.dataRows, by: .name)
-            reloadTableData()
         case 1:
             self.dataRows = sort(self.dataRows, by: .state)
-            reloadTableData()
         default:
             print("Error: a non-available segment control button was pressed")
         }
     }
     
     @IBAction func sortTapped(_ sender: UISegmentedControl) {
-        sortBasedOnSegmentState()
+        reloadTableData()
     }
     
     enum sortBy {
