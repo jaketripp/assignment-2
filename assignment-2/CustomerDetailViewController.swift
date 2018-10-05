@@ -10,6 +10,10 @@ import UIKit
 import Eureka
 
 class CustomerDetailViewController: FormViewController {
+    // TODO: have a customer variable for the values? house them all inside one varialbe that way
+    // TODO: have them start off as empty values?
+    // TODO: maybe change customer model to be able to be initiliazed without any data and just have empty variables?
+    
     // Struct for form items tag constants
     struct FormItems {
         static let name = "name"
@@ -18,20 +22,23 @@ class CustomerDetailViewController: FormViewController {
         static let city = "city"
         static let state = "state"
         static let zip = "zip"
-        static let birthDate = "birthDate"
-        static let like = "like"
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // TODO: have a variable, formTitle set by selecting vs create new segue
+        // TODO: Update $(name)'s information
+        // TODO: Create new CM Customer
         form +++ Section("About You")
             
             // MARK: - NAME
             <<< TextRow(FormItems.name) {
                 $0.title = "Name"
                 $0.placeholder = "John Smith"
+                $0.value = ""
                 $0.add(rule: RuleRequired(msg: "Name field required!"))
+                // TODO: change validation to not allow any crazy characters? use for city and address
                 $0.add(rule: RuleClosure<String> { input in
                     let decimalCharacters = CharacterSet.decimalDigits
                     let decimalRange = input?.rangeOfCharacter(from: decimalCharacters)
