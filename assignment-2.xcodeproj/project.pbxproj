@@ -21,6 +21,7 @@
 		CC13CDD12166AF0500DA1F6A /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC13CDD02166AF0500DA1F6A /* Media.xcassets */; };
 		CC13CDD42166B57600DA1F6A /* Ext_Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13CDD32166B57600DA1F6A /* Ext_Color.swift */; };
 		CCB513C72166F56A002B3DBD /* CustomerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB513C62166F56A002B3DBD /* CustomerDetailViewController.swift */; };
+		CCB513CF2167ED0F002B3DBD /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB513CE2167ED0F002B3DBD /* Validation.swift */; };
 		CEA8CA041F071B2300448B51 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA8CA031F071B2300448B51 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		CC13CDD02166AF0500DA1F6A /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		CC13CDD32166B57600DA1F6A /* Ext_Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_Color.swift; sourceTree = "<group>"; };
 		CCB513C62166F56A002B3DBD /* CustomerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerDetailViewController.swift; sourceTree = "<group>"; };
+		CCB513CE2167ED0F002B3DBD /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		CEA8CA031F071B2300448B51 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/Images.xcassets"; sourceTree = SOURCE_ROOT; };
 		E422662361B0B41B1AC61E78 /* Pods_assignment_2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_assignment_2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				CC13CDD32166B57600DA1F6A /* Ext_Color.swift */,
+				CCB513CE2167ED0F002B3DBD /* Validation.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 			files = (
 				4FD6C47A1B754AF1002F9F90 /* AppDelegate.swift in Sources */,
 				CCB513C72166F56A002B3DBD /* CustomerDetailViewController.swift in Sources */,
+				CCB513CF2167ED0F002B3DBD /* Validation.swift in Sources */,
 				CC13CDCC2166A19D00DA1F6A /* DeletedCustomerInfo.swift in Sources */,
 				CC13CDCA21669D8300DA1F6A /* Customer.swift in Sources */,
 				4FD6C49F1B755242002F9F90 /* RootViewController.swift in Sources */,

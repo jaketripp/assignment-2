@@ -14,57 +14,21 @@ class CustomerDetailViewController: FormViewController {
     // TODO: have them start off as empty values?
     // TODO: maybe change customer model to be able to be initiliazed without any data and just have empty variables?
     
-    let changeTextToRed : ((AnyObject, AnyObject) -> Void) = { cell, row in
-        
-        if let cell = cell as? TextCell, let row = row as? TextRow {
-            if !row.isValid {
-                cell.titleLabel?.textColor = .red
-            }
-        } else if let cell = cell as? EmailCell, let row = row as? EmailRow {
-            if !row.isValid {
-                cell.titleLabel?.textColor = .red
-            }
-        } else if let cell = cell as? ZipCodeCell, let row = row as? ZipCodeRow {
-            
-        }
+//    ["Name": "Jake Tripp",
+//    "Email__c": "shmogens@gmail.com",
+//    "Address__c": "123 Apple Street",
+//    "City__c": "San Antonio",
+//    "State__c": "TX",
+//    "Zip__c": "78209"]
+    var customer : Customer = Customer([:])
+    
+    /// Track current form state
+    enum currentAction {
+        case updating
+        case creating
     }
+    var userIsCurrently : currentAction = .updating
     
-    
-    
-    let showValidationErrors : ((AnyObject, AnyObject) -> Void) = { cell, row in
-        if let cell = cell as? TextCell, let row = row as? TextRow {
-            
-        } else if let cell = cell as? EmailCell, let row = row as? EmailRow {
-            let rowIndex = row.indexPath!.row
-            while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
-                row.section?.remove(at: rowIndex + 1)
-            }
-            if !row.isValid {
-                for (index, validationMsg) in row.validationErrors.map({ $0.msg }).enumerated() {
-                    let labelRow = LabelRow() {
-                        $0.title = validationMsg
-                        $0.cell.height = { 30 }
-                    }
-                    row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
-                }
-            }
-        } else if let cell = cell as? ZipCodeCell, let row = row as? ZipCodeRow {
-            let rowIndex = row.indexPath!.row
-            while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
-                row.section?.remove(at: rowIndex + 1)
-            }
-            if !row.isValid {
-                for (index, validationMsg) in row.validationErrors.map({ $0.msg }).enumerated() {
-                    let labelRow = LabelRow() {
-                        $0.title = validationMsg
-                        $0.cell.height = { 30 }
-                    }
-                    row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
-                }
-            }
-        }
-    }
-
     // Struct for form items tag constants
     struct FormItems {
         static let name = "name"
@@ -73,40 +37,33 @@ class CustomerDetailViewController: FormViewController {
         static let city = "city"
         static let state = "state"
         static let zip = "zip"
+        static let submitButton = "submitButton"
     }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        setEurekaRowDefaults()
+        Validation.setEurekaRowDefaults()
         
         // TODO: have a variable, formTitle set by selecting vs create new segue
-        // TODO: Update $(name)'s information
-        // TODO: Create new CM Customer
+        let sectionTitle = userIsCurrently == .updating ? "Update info" : "Create a new customer"
+        let buttonText = userIsCurrently == .updating ? "Update" : "Create"
+        
         // TODO: Try to query and validate the address, city, state, zip
-        form +++ Section("About You")
+        form +++ Section(sectionTitle)
             // MARK: - NAME
             <<< TextRow(FormItems.name) {
                 $0.title = "Name"
                 $0.placeholder = "John Smith"
-                $0.value = ""
+                $0.value = customer.name
                 $0.add(rule: RuleRequired(msg: "Name field required!"))
                 $0.add(rule: RuleMaxLength(maxLength: 80, msg: "Name cannot be longer than 80 characters!"))
-//                // TODO: change validation to not allow any crazy characters? use for city and address
-//                $0.add(rule: RuleClosure<String> { input in
-//                    let decimalCharacters = CharacterSet.decimalDigits
-//                    let decimalRange = input?.rangeOfCharacter(from: decimalCharacters)
-//                    if decimalRange != nil {
-//                        return ValidationError(msg: "Names must not contain numbers!")
-//                    } else {
-//                        return nil
-//                    }
-//                })
             }
             
             // MARK: - EMAIL
             <<< EmailRow(FormItems.email) {
                 $0.title = "Email"
                 $0.placeholder = "john.smith@gmail.com"
+                $0.value = customer.email
                 $0.add(rule: RuleEmail())
             }
             
@@ -114,12 +71,16 @@ class CustomerDetailViewController: FormViewController {
             <<< TextRow(FormItems.street) {
                 $0.title = "Address"
                 $0.placeholder = "123 Apple Street"
+                $0.value = customer.street
+                $0.add(rule: RuleMaxLength(maxLength: 255, msg: "Address cannot be longer than 255 characters!"))
             }
             
             // MARK: - CITY
             <<< TextRow(FormItems.city) {
                 $0.title = "City"
                 $0.placeholder = "San Antonio"
+                $0.value = customer.city
+                $0.add(rule: RuleMaxLength(maxLength: 255, msg: "City cannot be longer than 80 characters!"))
             }
             
             // MARK: - STATE
@@ -127,19 +88,20 @@ class CustomerDetailViewController: FormViewController {
                 row.title = "State"
                 row.noValueDisplayText = "Pick a state"
                 row.options = ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"]
+                row.value = customer.state
             }
             
             // MARK: - ZIP
             <<< ZipCodeRow(FormItems.zip) {
                 $0.title = "Zip Code"
                 $0.placeholder = "12345"
+                $0.value = customer.zip
                 $0.add(rule: RuleExactLength(exactLength: 5))
                 $0.add(rule: RuleClosure<String> { input in
-                    // if it's empty, do nothing
-                    // if it can be casted to an int, do nothing
-                    // else
+                    // if it's nil or empty, do nothing
                     if  (input ?? "").isEmpty {
                         return nil
+                    // if it can be casted to an int, do nothing
                     } else if input != nil, let _ = Int(input!) {
                         return nil
                     } else {
@@ -147,68 +109,21 @@ class CustomerDetailViewController: FormViewController {
                     }
                 })
             }
+            <<< ButtonRow(FormItems.submitButton) {
+                $0.title = buttonText
+//                $0.presentationMode = .segueName(segueName: "RowsExampleViewControllerSegue", onDismiss: nil)
+                $0.onCellSelection({ (cell, row) in
+                    if let validationErrors : [ValidationError] = row.section?.form?.validate(), validationErrors.isEmpty {
+                        // happy path, send request
+                        // print("yep")
+                    } else {
+                        // sad path, maybe show an alert? although errors will already be visible
+                        // print("nope")
+                    }
+                })
+            }
+        
     }
     
-    func setEurekaRowDefaults() {
-        TextRow.defaultCellUpdate = { cell, row in
-            if !row.isValid {
-                cell.titleLabel?.textColor = .red
-            }
-        }
-        TextRow.defaultOnRowValidationChanged = { cell, row in
-            let rowIndex = row.indexPath!.row
-            while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
-                row.section?.remove(at: rowIndex + 1)
-            }
-            if !row.isValid {
-                for (index, validationMsg) in row.validationErrors.map({ $0.msg }).enumerated() {
-                    let labelRow = LabelRow() {
-                        $0.title = validationMsg
-                        $0.cell.height = { 30 }
-                    }
-                    row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
-                }
-            }
-        }
-        EmailRow.defaultCellUpdate = { cell, row in
-            if !row.isValid {
-                cell.titleLabel?.textColor = .red
-            }
-        }
-        EmailRow.defaultOnRowValidationChanged = { cell, row in
-            let rowIndex = row.indexPath!.row
-            while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
-                row.section?.remove(at: rowIndex + 1)
-            }
-            if !row.isValid {
-                for (index, validationMsg) in row.validationErrors.map({ $0.msg }).enumerated() {
-                    let labelRow = LabelRow() {
-                        $0.title = validationMsg
-                        $0.cell.height = { 30 }
-                    }
-                    row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
-                }
-            }
-        }
-        ZipCodeRow.defaultCellUpdate = { cell, row in
-            if !row.isValid {
-                cell.titleLabel?.textColor = .red
-            }
-        }
-        ZipCodeRow.defaultOnRowValidationChanged = { cell, row in
-            let rowIndex = row.indexPath!.row
-            while row.section!.count > rowIndex + 1 && row.section?[rowIndex  + 1] is LabelRow {
-                row.section?.remove(at: rowIndex + 1)
-            }
-            if !row.isValid {
-                for (index, validationMsg) in row.validationErrors.map({ $0.msg }).enumerated() {
-                    let labelRow = LabelRow() {
-                        $0.title = validationMsg
-                        $0.cell.height = { 30 }
-                    }
-                    row.section?.insert(labelRow, at: row.indexPath!.row + index + 1)
-                }
-            }
-        }
-    }
+    
 }
