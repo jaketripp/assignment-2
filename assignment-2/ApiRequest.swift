@@ -20,6 +20,7 @@ class ApiRequest: NSObject {
         restApi.performSOQLQuery(soqlQuery, fail: { (error, response) in
             
             SalesforceSwiftLogger.log(type(of:self), level:.debug, message:"Error: \(error)")
+            SFUserAccountManager.sharedInstance().logout()
             
         }, complete: { (json, httpResponse) in
             
