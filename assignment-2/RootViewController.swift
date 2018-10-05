@@ -175,6 +175,7 @@ class RootViewController : UITableViewController {
                 .done { [weak self] response  in
                     DispatchQueue.main.async {
                         self?.deleteRequests[deleteRequest.hashValue] = deletedCustomerInfo
+                        // TODO: Change to fadeout instead of just vanish
                         self?.dataRows.remove(at:row)
                         self?.tableView.reloadData()
                     }
