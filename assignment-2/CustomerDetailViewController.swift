@@ -20,23 +20,32 @@ class CustomerDetailViewController: FormViewController {
 //    "City__c": "San Antonio",
 //    "State__c": "TX",
 //    "Zip__c": "78209"]
-    var customer : Customer = Customer([:])
-    
+
+    var customerIndex : Int!
+//    var customers : [Customer]!
+    var testController: RootViewController!
+    var customers : [Customer]!
+    var customer : Customer {
+        get {
+            return customerIndex != nil ? customers[customerIndex] : Customer([:])
+        }
+    }
+
     /// Track current form state
     enum currentAction {
         case updating
         case creating
     }
-    var userIsCurrently : currentAction = .updating
+    var userIsCurrently : currentAction = .creating
     
     // Struct for form items tag constants
     struct FormItems {
-        static let name = "name"
-        static let email = "email"
-        static let street = "street"
-        static let city = "city"
-        static let state = "state"
-        static let zip = "zip"
+        static let name = "Name"
+        static let email = "Email__c"
+        static let street = "Address__c"
+        static let city = "City__c"
+        static let state = "State__c"
+        static let zip = "Zip__c"
         static let submitButton = "submitButton"
     }
         
@@ -47,6 +56,10 @@ class CustomerDetailViewController: FormViewController {
         // TODO: have a variable, formTitle set by selecting vs create new segue
         let sectionTitle = userIsCurrently == .updating ? "Update info" : "Create a new customer"
         let buttonText = userIsCurrently == .updating ? "Update" : "Create"
+        
+        print(customers)
+        print("customer index \(customerIndex)")
+        print("user currently \(userIsCurrently)")
         
         // TODO: Try to query and validate the address, city, state, zip
         form +++ Section(sectionTitle)
@@ -115,10 +128,19 @@ class CustomerDetailViewController: FormViewController {
                 $0.onCellSelection({ (cell, row) in
                     if let validationErrors : [ValidationError] = row.section?.form?.validate(), validationErrors.isEmpty {
                         // happy path, send request
-                        // print("yep")
+//                        print(formValues)
+//                        print(newCustomer)
+                        let formValues = self.form.values()
+                        let newCustomer = Customer(formValues)
+                        if self.userIsCurrently == .creating {
+                            self.testController.dataRows.append(newCustomer)
+                        } else if self.userIsCurrently == .updating {
+                            self.testController.dataRows[self.customerIndex] = newCustomer
+                        }
+                        self.testController.reloadTableData()
+                        self.navigationController?.popToRootViewController(animated: true)
                     } else {
                         // sad path, maybe show an alert? although errors will already be visible
-                        // print("nope")
                     }
                 })
             }
