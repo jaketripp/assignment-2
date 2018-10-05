@@ -38,7 +38,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="nameAndState" destination="gBe-mO-VH8" id="622-tE-5co"/>
-                                    <segue destination="GOr-04-9uN" kind="show" id="H9X-oa-drH"/>
+                                    <segue destination="GOr-04-9uN" kind="show" identifier="toUpdateCustomerDetail" id="iTn-KP-t9R"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -77,6 +77,9 @@
                         </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="8rD-uh-nbN" userLabel="Add Customer">
                             <color key="tintColor" red="0.0" green="0.41176470590000003" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="GOr-04-9uN" kind="show" identifier="toCreateCustomerDetail" id="P7C-tW-WgT"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -125,4 +128,7 @@
     <resources>
         <image name="asc" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="P7C-tW-WgT"/>
+    </inferredMetricsTieBreakers>
 </document>
