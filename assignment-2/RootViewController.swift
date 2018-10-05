@@ -89,27 +89,31 @@ class RootViewController : UITableViewController {
     
     func reloadTableData() {
         DispatchQueue.main.async(execute: {
+            self.sortBasedOnSegmentState()
             self.tableView.reloadData()
         })
     }
     
     
     // MARK: - SORT
-    
     @IBOutlet weak var sortSegmentController: UISegmentedControl!
     
-    @IBAction func sortTapped(_ sender: UISegmentedControl) {
+    func sortBasedOnSegmentState() {
         let scIndex = sortSegmentController.selectedSegmentIndex
         switch scIndex {
-            case 0:
-                self.dataRows = sort(self.dataRows, by: .name)
-                reloadTableData()
-            case 1:
-                self.dataRows = sort(self.dataRows, by: .state)
-                reloadTableData()
-            default:
-                print("Error: a non-available segment control button was pressed")
+        case 0:
+            self.dataRows = sort(self.dataRows, by: .name)
+            reloadTableData()
+        case 1:
+            self.dataRows = sort(self.dataRows, by: .state)
+            reloadTableData()
+        default:
+            print("Error: a non-available segment control button was pressed")
         }
+    }
+    
+    @IBAction func sortTapped(_ sender: UISegmentedControl) {
+        sortBasedOnSegmentState()
     }
     
     enum sortBy {
@@ -132,7 +136,6 @@ class RootViewController : UITableViewController {
                     return customers.sorted { $0.state ?? "" > $1.state ?? "" }
                 }
         }
-        
     }
     
     
@@ -147,6 +150,29 @@ class RootViewController : UITableViewController {
         }
         self.dataRows = self.dataRows.reversed()
         reloadTableData()
+    }
+    
+    
+    // MARK: - UPDATE
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toUpdateCustomerDetail" {
+            if let destination = segue.destination as? CustomerDetailViewController {
+                destination.userIsCurrently = .updating
+                destination.customers = self.dataRows
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    let selectedRow = indexPath.row
+                    
+                    destination.customerIndex = selectedRow
+                    destination.testController = self                }
+                
+            }
+        } else if segue.identifier == "toCreateCustomerDetail" {
+            if let destination = segue.destination as? CustomerDetailViewController {
+                destination.userIsCurrently = .creating
+                destination.customers = self.dataRows
+                destination.testController = self
+            }
+        }
     }
     
     
