@@ -6,10 +6,12 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--assignment-2-->
+        <!--Root View Controller-->
         <scene sceneID="6t3-R7-Qti">
             <objects>
                 <tableViewController id="DI2-XC-Yf2" customClass="RootViewController" customModule="assignment_2" customModuleProvider="target" sceneMemberID="viewController">
@@ -36,6 +38,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="nameAndState" destination="gBe-mO-VH8" id="622-tE-5co"/>
+                                    <segue destination="GOr-04-9uN" kind="show" id="H9X-oa-drH"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -44,31 +47,36 @@
                             <outlet property="delegate" destination="DI2-XC-Yf2" id="CQm-uq-qHc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="assignment-2" id="SJP-Mp-JrQ">
-                        <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="Uba-Ey-3aV">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LNa-QR-Dv8" userLabel="AscOrDesc">
-                                <rect key="frame" x="16" y="6" width="38" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <inset key="imageEdgeInsets" minX="10" minY="12" maxX="10" maxY="12"/>
-                                <state key="normal" image="asc"/>
-                                <connections>
-                                    <action selector="ascOrDescPressed:" destination="DI2-XC-Yf2" eventType="touchUpInside" id="ZrM-o3-kht"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="wP5-AH-eu0">
-                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="04y-kW-bU4">
-                                <rect key="frame" x="238" y="7" width="121" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Name"/>
-                                    <segment title="State"/>
-                                </segments>
-                                <color key="tintColor" red="0.0" green="0.41176470590000003" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="sortTapped:" destination="DI2-XC-Yf2" eventType="valueChanged" id="PU4-4h-EQX"/>
-                                </connections>
-                            </segmentedControl>
+                    <navigationItem key="navigationItem" id="SJP-Mp-JrQ">
+                        <leftBarButtonItems>
+                            <barButtonItem style="plain" id="wP5-AH-eu0">
+                                <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="04y-kW-bU4">
+                                    <rect key="frame" x="16" y="7" width="121" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <segments>
+                                        <segment title="Name"/>
+                                        <segment title="State"/>
+                                    </segments>
+                                    <color key="tintColor" red="0.0" green="0.41176470590000003" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <connections>
+                                        <action selector="sortTapped:" destination="DI2-XC-Yf2" eventType="valueChanged" id="PU4-4h-EQX"/>
+                                    </connections>
+                                </segmentedControl>
+                            </barButtonItem>
+                            <barButtonItem title="Item" style="plain" id="Uba-Ey-3aV">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LNa-QR-Dv8" userLabel="AscOrDesc">
+                                    <rect key="frame" x="145" y="6" width="38" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <inset key="imageEdgeInsets" minX="10" minY="12" maxX="10" maxY="12"/>
+                                    <state key="normal" image="asc"/>
+                                    <connections>
+                                        <action selector="ascOrDescPressed:" destination="DI2-XC-Yf2" eventType="touchUpInside" id="ZrM-o3-kht"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="8rD-uh-nbN" userLabel="Add Customer">
+                            <color key="tintColor" red="0.0" green="0.41176470590000003" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -79,6 +87,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVg-V3-kNb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1223" y="-27"/>
+        </scene>
+        <!--Customer Detail View Controller-->
+        <scene sceneID="suY-LH-Mdf">
+            <objects>
+                <viewController id="GOr-04-9uN" userLabel="Customer Detail View Controller" customClass="CustomerDetailViewController" customModule="assignment_2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0O7-Cr-iqM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="TSq-EG-yOp"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s20-4I-YRF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2329" y="-27"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UCW-lZ-Q2B">

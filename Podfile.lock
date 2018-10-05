@@ -7,6 +7,7 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.4.0):
     - CocoaLumberjack/Default
+  - Eureka (4.1.1)
   - FMDB/SQLCipher (2.7.5):
     - SQLCipher
   - PromiseKit (5.0.0):
@@ -60,6 +61,7 @@ PODS:
     - SQLCipher/common
 
 DEPENDENCIES:
+  - Eureka (from `https://github.com/xmartlabs/Eureka.git`, tag `4.1.1`)
   - PromiseKit (from `https://github.com/mxcl/PromiseKit`, tag `5.0.3`)
   - SalesforceAnalytics (from `mobile_sdk/SalesforceMobileSDK-iOS`)
   - SalesforceSDKCore (from `mobile_sdk/SalesforceMobileSDK-iOS`)
@@ -68,6 +70,9 @@ DEPENDENCIES:
   - SmartSync (from `mobile_sdk/SalesforceMobileSDK-iOS`)
 
 EXTERNAL SOURCES:
+  Eureka:
+    :git: https://github.com/xmartlabs/Eureka.git
+    :tag: 4.1.1
   PromiseKit:
     :git: https://github.com/mxcl/PromiseKit
     :tag: 5.0.3
@@ -83,12 +88,16 @@ EXTERNAL SOURCES:
     :path: mobile_sdk/SalesforceMobileSDK-iOS
 
 CHECKOUT OPTIONS:
+  Eureka:
+    :git: https://github.com/xmartlabs/Eureka.git
+    :tag: 4.1.1
   PromiseKit:
     :git: https://github.com/mxcl/PromiseKit
     :tag: 5.0.3
 
 SPEC CHECKSUMS:
   CocoaLumberjack: aa9dcab71bdf9eaf2a63bbd9ddc87863efe45457
+  Eureka: b88fb930e42c79f8c03c373d0fcdc28c1d6c50ed
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   PromiseKit: 8297c4e85ac240748007c91ada1ccbccceaf1e66
   SalesforceAnalytics: ce80f5a13795d12812dbb83a7048370d3ccb6bf5
@@ -98,6 +107,6 @@ SPEC CHECKSUMS:
   SmartSync: 1604bbb47e111d6f08dd5272dc52d65afaf94abe
   SQLCipher: f9fcf29b2e59ced7defc2a2bdd0ebe79b40d4990
 
-PODFILE CHECKSUM: 6024c43a09f24bdc63e433441d2f2d1b17d420bd
+PODFILE CHECKSUM: 9afdbe9aa7603281298bf1300e239f2d99ad1b2e
 
 COCOAPODS: 1.4.0

@@ -13,6 +13,7 @@ pod 'SmartStore', :path => 'mobile_sdk/SalesforceMobileSDK-iOS'
 pod 'SmartSync', :path => 'mobile_sdk/SalesforceMobileSDK-iOS'
 pod 'SalesforceSwiftSDK', :path => 'mobile_sdk/SalesforceMobileSDK-iOS'
 pod 'PromiseKit', :git => 'https://github.com/mxcl/PromiseKit', :tag => '5.0.3'
+pod 'Eureka', :git => 'https://github.com/xmartlabs/Eureka.git', :tag => '4.1.1'
 
 end
 
