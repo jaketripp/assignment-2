@@ -21,12 +21,12 @@ class CustomerDetailViewController: FormViewController {
     var customerIndex : Int!
     var customers : [Customer]!
     var testController: RootViewController!
-    
     var customer : Customer {
         get {
             return customerIndex != nil ? customers[customerIndex] : Customer([:])
         }
     }
+    var APIRequester : ApiRequest = ApiRequest()
 
     /// Track current form state
     enum currentAction {
@@ -127,23 +127,48 @@ class CustomerDetailViewController: FormViewController {
                     if let validationErrors : [ValidationError] = row.section?.form?.validate(), validationErrors.isEmpty {
                         
                         let formValues = self.form.values()
-                        let newCustomer = Customer(formValues)
+                        var newCustomer = Customer(formValues)
                         
                         if self.userIsCurrently == .creating {
                             
                             self.testController.dataRows.append(newCustomer)
                             self.testController.reloadTableData()
+                            // detect error
+                            // show alert
+                            // remove from local
+                            // otherwise do nothing
+                            self.APIRequester.create(newCustomer) { (customer, error) in
+                                if error != nil {
+                                    let title = "Unable to create customer"
+                                    let message = "Sorry, we couldn't create a new customer. Please try again later."
+                                    self.testController.showAlert(title: title, message: message)
+                                    print(error ?? title)
+                                }
+                                print("created")
+                                print(customer)
+                            }
 //                            print("something happened")
                             
                         } else if self.userIsCurrently == .updating {
-                            
                             // there is something to update
                             if !self.customer.isEquivalentTo(newCustomer) {
+                                newCustomer.id = self.customer.id
                                 self.testController.dataRows[self.customerIndex] = newCustomer
                                 self.testController.reloadTableData()
-//                                print("something happened")
+                                // detect error
+                                    // show alert
+                                    // have kept track of customer and customer index
+                                    // revert customer back to old customer
+                                // otherwise do nothing
+                                self.APIRequester.update(newCustomer) { (customer, error) in
+                                    if error != nil {
+                                        let title = "Unable to update customer"
+                                        let message = "Sorry, we couldn't update the customer's data! Please try again later."
+                                        self.testController.showAlert(title: title, message: message)
+                                        print(error ?? title)
+                                    }
+                                }
                             }
-                            
                         }
                         
                         self.navigationController?.popToRootViewController(animated: true)
