@@ -38,7 +38,7 @@ struct Customer {
     }
     
     func asDictionary() -> [String:Any] {
-        var data : [String:Any]
+        var data : [String:Any] = [:]
         data["Name"] = self.name
         data["Email__c"] = self.email
         data["Address__c"] = self.street
