@@ -26,4 +26,14 @@ struct Customer {
         self.zip    = data["Zip__c"] as? String
         self.id     = data["Id"] as? String
     }
+    
+    /// returns Bool of whether current data is equivalent to a passed Customer object.
+    func isEquivalentTo(_ passedCustomer: Customer) -> Bool {
+        return passedCustomer.name == self.name &&
+                passedCustomer.email == self.email &&
+                passedCustomer.street == self.street &&
+                passedCustomer.city == self.city &&
+                passedCustomer.state == self.state &&
+                passedCustomer.zip == self.zip
+    }
 }

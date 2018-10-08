@@ -10,9 +10,6 @@ import UIKit
 import Eureka
 
 class CustomerDetailViewController: FormViewController {
-    // TODO: have a customer variable for the values? house them all inside one varialbe that way
-    // TODO: have them start off as empty values?
-    // TODO: maybe change customer model to be able to be initiliazed without any data and just have empty variables?
     
 //    ["Name": "Jake Tripp",
 //    "Email__c": "shmogens@gmail.com",
@@ -22,9 +19,9 @@ class CustomerDetailViewController: FormViewController {
 //    "Zip__c": "78209"]
 
     var customerIndex : Int!
-//    var customers : [Customer]!
-    var testController: RootViewController!
     var customers : [Customer]!
+    var testController: RootViewController!
+    
     var customer : Customer {
         get {
             return customerIndex != nil ? customers[customerIndex] : Customer([:])
@@ -36,6 +33,7 @@ class CustomerDetailViewController: FormViewController {
         case updating
         case creating
     }
+    /// What the user is currently doing (creating or updating)
     var userIsCurrently : currentAction = .creating
     
     // Struct for form items tag constants
@@ -53,15 +51,14 @@ class CustomerDetailViewController: FormViewController {
         super.viewDidLoad()
         Validation.setEurekaRowDefaults()
         
-        // TODO: have a variable, formTitle set by selecting vs create new segue
+        
         let sectionTitle = userIsCurrently == .updating ? "Update info" : "Create a new customer"
         let buttonText = userIsCurrently == .updating ? "Update" : "Create"
         
-        print(customers)
-        print("customer index \(customerIndex)")
-        print("user currently \(userIsCurrently)")
+//        print(customers)
+//        print("customer index \(customerIndex)")
+//        print("user currently \(userIsCurrently)")
         
-        // TODO: Try to query and validate the address, city, state, zip
         form +++ Section(sectionTitle)
             // MARK: - NAME
             <<< TextRow(FormItems.name) {
@@ -126,20 +123,34 @@ class CustomerDetailViewController: FormViewController {
                 $0.title = buttonText
 //                $0.presentationMode = .segueName(segueName: "RowsExampleViewControllerSegue", onDismiss: nil)
                 $0.onCellSelection({ (cell, row) in
+                    // no validation errors
                     if let validationErrors : [ValidationError] = row.section?.form?.validate(), validationErrors.isEmpty {
-                        // happy path, send request
-//                        print(formValues)
-//                        print(newCustomer)
+                        
                         let formValues = self.form.values()
                         let newCustomer = Customer(formValues)
+                        
                         if self.userIsCurrently == .creating {
+                            
                             self.testController.dataRows.append(newCustomer)
+                            self.testController.reloadTableData()
+//                            print("something happened")
+                            
                         } else if self.userIsCurrently == .updating {
-                            self.testController.dataRows[self.customerIndex] = newCustomer
+                            
+                            // there is something to update
+                            if !self.customer.isEquivalentTo(newCustomer) {
+                                self.testController.dataRows[self.customerIndex] = newCustomer
+                                self.testController.reloadTableData()
+//                                print("something happened")
+                            }
+                            
                         }
-                        self.testController.reloadTableData()
+                        
                         self.navigationController?.popToRootViewController(animated: true)
-                    } else {
+                    }
+                    
+                    
+                    else {
                         // sad path, maybe show an alert? although errors will already be visible
                     }
                 })
