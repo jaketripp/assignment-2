@@ -235,9 +235,7 @@ class RootViewController : UITableViewController {
 //                let message = (dictionary["message"] as? String) ?? "Failed to delete item"
                 let message = "Something went wrong. Sorry! Please try again later."
                 let title = "Failed to delete customer"
-                let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                self.showAlert(title: title, message: message)
             }
         }
     }
