@@ -208,46 +208,47 @@ class RootViewController : UITableViewController {
             
             let deleteRequest: SFRestRequest = restApi.requestForDelete(withObjectType: "CM_Customer__c",
                                                                         objectId: deletedId)
+            DispatchQueue.main.async {
+                self.deleteRequests[deleteRequest.hashValue] = deletedCustomerInfo
+                
+                self.tableView.beginUpdates()
+                self.dataRows.remove(at: row)
+                self.tableView.deleteRows(at: [indexPath], with: .left)
+                self.tableView.endUpdates()
+            }
+            
             restApi.Promises.send(request: deleteRequest)
-                .done { [weak self] response  in
-                    DispatchQueue.main.async {
-                        self?.deleteRequests[deleteRequest.hashValue] = deletedCustomerInfo
-                        // TODO: Change to fadeout instead of just vanish
-                        self?.dataRows.remove(at:row)
-                        self?.tableView.reloadData()
-                    }
+                .done { response  in
+                    print("customer deleted")
                 }
                 .catch{ [weak self] error in
                     let e = error as NSError
-                    self?.reinstateDeletedRowWithRequest(deleteRequest)
+                    self?.reinstateDeletedRowWithRequest(deleteRequest, indexPath)
                     self?.showErrorAlert(e as NSError, request: deleteRequest)
                 }
         }
     }
     
-    func reinstateDeletedRowWithRequest(_ request:SFRestRequest) {
-        // Reinsert deleted rows if the operation is DELETE and the ID matches the deleted ID.
-        // The trouble is, the NSError parameter doesn't give us that info, so we can't really
-        // judge which row caused this error.
-        
-        DispatchQueue.main.async {
+    func reinstateDeletedRowWithRequest(_ request:SFRestRequest, _ indexPath: IndexPath) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             if let rowValue = self.deleteRequests[request.hashValue] {
-                // the beginning of the dataRows dictionary (index 0).
-                self.dataRows.insert(rowValue.data, at: 0)
-                self.tableView.reloadData()
+                
+                self.tableView.beginUpdates()
+                self.dataRows.insert(rowValue.data, at: indexPath.row)
+                self.tableView.insertRows(at: [indexPath], with: .left)
+                self.tableView.endUpdates()
+
                 self.deleteRequests.removeValue(forKey: request.hashValue as Int)
             }
         }
     }
     
     private func showErrorAlert(_ error: NSError, request: SFRestRequest) {
-        DispatchQueue.main.async {
-            let errArray = error.userInfo["error"] as! [Any]
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            let errArray = error.userInfo["error"] as? [Any] ?? [""]
             if errArray.count > 0 {
-//                let dictionary =  errArray[0] as! [String:Any]
-//                let message = (dictionary["message"] as? String) ?? "Failed to delete item"
-                let message = "Something went wrong. Sorry! Please try again later."
-                let title = "Failed to delete customer"
+                let message = "Sorry, we couldn't delete that customer! Please check your internet connection or try again later."
+                let title = "Unable to delete customer"
                 self.showAlert(title: title, message: message)
             }
         }
