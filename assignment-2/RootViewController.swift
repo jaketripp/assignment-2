@@ -33,30 +33,38 @@ class RootViewController : UITableViewController {
     // MARK: - DATA / VARIABLES
     var dataRows : [Customer] = [Customer]()
     var customerInfoDictionary = [String : Customer]()
-    var APIRequester : ApiRequest = ApiRequest()
-    var isAscending : Bool = true
+    private var APIRequester : ApiRequest = ApiRequest()
+    private var isAscending : Bool = true
     private var deleteRequests = [Int:DeletedCustomerInfo]()
+    private var myRefreshControl : UIRefreshControl?
     
     // MARK: - View lifecycle
     override func loadView() {
         super.loadView()
-        
         getAndLoadData()
+        addRefreshControl()
     }
     
-    func getAndLoadData() {
+    @objc func getAndLoadData() {
         APIRequester.getDataRows { (response) in
-            self.customerInfoDictionary = response
-            let rows = Array(self.customerInfoDictionary.values)
-            self.dataRows = self.sort(rows, by: .name)
             SalesforceSwiftLogger.log(type(of:self), level:.debug, message:"request:didLoadResponse: #records: \(self.dataRows.count)")
+            self.customerInfoDictionary = response
+            self.reloadTableData()
             DispatchQueue.main.async(execute: {
-                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
             })
         }
     }
     
-    // MARK: - Table view data source
+    // MARK: - REFRESH CONTROL
+    func addRefreshControl() {
+        myRefreshControl = UIRefreshControl()
+        myRefreshControl?.tintColor = UIColor.CMgreen
+        myRefreshControl?.addTarget(self, action: #selector(getAndLoadData), for: UIControlEvents.valueChanged)
+        tableView.refreshControl = myRefreshControl
+    }
+    
+    // MARK: - TABLE VIEW
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -99,11 +107,12 @@ class RootViewController : UITableViewController {
         })
     }
     
-    
-    
-    
     // MARK: - SORT
     @IBOutlet weak var sortSegmentController: UISegmentedControl!
+    
+    @IBAction func sortTapped(_ sender: UISegmentedControl) {
+        reloadTableData()
+    }
     
     func sortBasedOnSegmentState() {
         let scIndex = sortSegmentController.selectedSegmentIndex
@@ -115,10 +124,6 @@ class RootViewController : UITableViewController {
         default:
             print("Error: a non-available segment control button was pressed")
         }
-    }
-    
-    @IBAction func sortTapped(_ sender: UISegmentedControl) {
-        reloadTableData()
     }
     
     enum sortBy {

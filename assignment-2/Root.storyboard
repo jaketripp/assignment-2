@@ -85,6 +85,7 @@
                     <connections>
                         <outlet property="ascOrDesc" destination="LNa-QR-Dv8" id="d5K-Bc-faK"/>
                         <outlet property="sortSegmentController" destination="04y-kW-bU4" id="Nl0-gm-jF0"/>
+                        <outlet property="tableView" destination="8jh-vb-cBW" id="jiO-lr-Ltv"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVg-V3-kNb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -129,6 +130,6 @@
         <image name="asc" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="P7C-tW-WgT"/>
+        <segue reference="iTn-KP-t9R"/>
     </inferredMetricsTieBreakers>
 </document>
