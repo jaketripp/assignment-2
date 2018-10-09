@@ -94,7 +94,7 @@ class CustomerDetailViewController: FormViewController {
             <<< PickerInlineRow<String>(FormItems.state) { (row : PickerInlineRow<String>) -> Void in
                 row.title = "State"
                 row.noValueDisplayText = "Pick a state"
-                row.options = ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"]
+                row.options = ["", "AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"]
                 row.value = customer.state
             }
             
@@ -126,6 +126,12 @@ class CustomerDetailViewController: FormViewController {
                         
                         let formValues = self.form.values()
                         var newCustomer = Customer(formValues)
+                        
+                        // remove empty string state
+                        // (user opened picklist and kept it on empty string - first option)
+                        if newCustomer.state == "" {
+                            newCustomer.state = nil
+                        }
                         
                         // MARK: - CREATE
                         if self.userIsCurrently == .creating {
