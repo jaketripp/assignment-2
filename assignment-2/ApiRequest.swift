@@ -16,7 +16,7 @@ class ApiRequest: NSObject {
     let restApi = SFRestAPI.sharedInstance()
     
     /// Get the initial data
-    func getDataRows(completion: @escaping (([Customer]) -> Void)) {
+    func getDataRows(completion: @escaping (([String : Customer]) -> Void)) {
         let soqlQuery = "SELECT Id, Name, Email__c, Address__c, City__c, State__c, Zip__c, LastModifiedDate FROM CM_Customer__c WHERE State__c != NULL ORDER BY LastModifiedDate DESC LIMIT 25"
         
         restApi.performSOQLQuery(soqlQuery, fail: { (error, response) in
@@ -26,10 +26,12 @@ class ApiRequest: NSObject {
             
         }, complete: { (json, httpResponse) in
             
-            if let dict = json as? [String: Any], let records = dict["records"] as? [[String: Any]] {
-                var customers = [Customer]()
+            if let dict = json as? [String : Any], let records = dict["records"] as? [[String: Any]] {
+                var customers = [String : Customer]()
                 for customer in records {
-                    customers.append(Customer(customer))
+                    if let id = customer["Id"] as? String {
+                        customers[id] = Customer(customer)
+                    }
                 }
                 completion(customers)
             }
@@ -38,30 +40,16 @@ class ApiRequest: NSObject {
     }
     
     /// Send update request to SF
-    func update(_ customer: Customer, completion: @escaping ((Customer?, Error?) -> Void)) {
-        let fields = customer.asDictionary()
-        if let id = customer.id {
-            
+    func update(from oldCustomer: Customer, to newCustomer: Customer, completion: @escaping ((String?, Customer?, Error?) -> Void)) {
+        let fields = newCustomer.asDictionary()
+        if let id = oldCustomer.id {
             restApi.performUpdate(withObjectType: "CM_Customer__c", objectId: id, fields: fields,
                   fail: { (error, response) in
-//                    print(customer)
-//                    print(response)
                     SalesforceSwiftLogger.log(type(of:self), level:.debug, message:"Error: \(error)")
-                    //                    SFUserAccountManager.sharedInstance().logout()
-                    completion(nil, error)
+                    completion(id, oldCustomer, error)
                 },
                   complete: { (json, httpResponse) in
-                    
-                    //            if let dict = json as? [String: Any], let records = dict["records"] as? [[String: Any]] {
-                    //                var customers = [Customer]()
-                    //                for customer in records {
-                    //                    customers.append(Customer(customer))
-                    //                }
-                    //
-                    //            }
-//                    print(json)
-                    completion(customer, nil)
-                    
+                    print("customer updated")
                 }
             )
             
@@ -69,20 +57,25 @@ class ApiRequest: NSObject {
     }
     
     /// Send create request to SF
-    func create(_ customer: Customer, completion: @escaping ((Customer?, Error?) -> Void)) {
+    func create(_ customer: Customer, _ fakeId: String, completion: @escaping ((String?, String?, Customer?, Error?) -> Void)) {
         let fields = customer.asDictionary()
         
         restApi.performCreate(withObjectType: "CM_Customer__c", fields: fields,
             fail: { (error, response) in
-//                print(customer)
-//                print(response)
-                completion(nil, error)
                 SalesforceSwiftLogger.log(type(of:self), level:.debug, message:"Error: \(error)")
+                completion(fakeId, nil, nil, error)
             },
             complete: { (json, httpResponse) in
-//                print(json)
-                completion(customer, nil)
                 
+                if let dict = json as? [String : Any],
+                    let realId = dict["id"] as? String {
+                    
+                    var newCustomer = customer
+                    newCustomer.id = realId
+
+                    completion(fakeId, realId, newCustomer, nil)
+                    print("customer created")
+                }
             }
         )
     }

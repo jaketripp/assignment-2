@@ -29,8 +29,10 @@ import SalesforceSwiftSDK
 import PromiseKit
 
 class RootViewController : UITableViewController {
-    // MARK: - DATA
+    
+    // MARK: - DATA / VARIABLES
     var dataRows : [Customer] = [Customer]()
+    var customerInfoDictionary = [String : Customer]()
     var APIRequester : ApiRequest = ApiRequest()
     var isAscending : Bool = true
     private var deleteRequests = [Int:DeletedCustomerInfo]()
@@ -44,7 +46,9 @@ class RootViewController : UITableViewController {
     
     func getAndLoadData() {
         APIRequester.getDataRows { (response) in
-            self.dataRows = self.sort(response, by: .name)
+            self.customerInfoDictionary = response
+            let rows = Array(self.customerInfoDictionary.values)
+            self.dataRows = self.sort(rows, by: .name)
             SalesforceSwiftLogger.log(type(of:self), level:.debug, message:"request:didLoadResponse: #records: \(self.dataRows.count)")
             DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
@@ -89,10 +93,13 @@ class RootViewController : UITableViewController {
     
     func reloadTableData() {
         DispatchQueue.main.async(execute: {
+            self.dataRows = Array(self.customerInfoDictionary.values)
             self.sortBasedOnSegmentState()
             self.tableView.reloadData()
         })
     }
+    
+    
     
     
     // MARK: - SORT
@@ -161,8 +168,9 @@ class RootViewController : UITableViewController {
                     let selectedRow = indexPath.row
                     
                     destination.customerIndex = selectedRow
-                    destination.testController = self                }
-                
+                    destination.testController = self
+                    
+                }
             }
         } else if segue.identifier == "toCreateCustomerDetail" {
             if let destination = segue.destination as? CustomerDetailViewController {

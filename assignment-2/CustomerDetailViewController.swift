@@ -20,6 +20,7 @@ class CustomerDetailViewController: FormViewController {
 
     var customerIndex : Int!
     var customers : [Customer]!
+    // TODO: Change passing VC to a Class that houses the storage
     var testController: RootViewController!
     var customer : Customer {
         get {
@@ -33,6 +34,7 @@ class CustomerDetailViewController: FormViewController {
         case updating
         case creating
     }
+    
     /// What the user is currently doing (creating or updating)
     var userIsCurrently : currentAction = .creating
     
@@ -51,13 +53,8 @@ class CustomerDetailViewController: FormViewController {
         super.viewDidLoad()
         Validation.setEurekaRowDefaults()
         
-        
         let sectionTitle = userIsCurrently == .updating ? "Update info" : "Create a new customer"
         let buttonText = userIsCurrently == .updating ? "Update" : "Create"
-        
-//        print(customers)
-//        print("customer index \(customerIndex)")
-//        print("user currently \(userIsCurrently)")
         
         form +++ Section(sectionTitle)
             // MARK: - NAME
@@ -119,9 +116,10 @@ class CustomerDetailViewController: FormViewController {
                     }
                 })
             }
+            
+            // MARK: - SUBMIT
             <<< ButtonRow(FormItems.submitButton) {
                 $0.title = buttonText
-//                $0.presentationMode = .segueName(segueName: "RowsExampleViewControllerSegue", onDismiss: nil)
                 $0.onCellSelection({ (cell, row) in
                     // no validation errors
                     if let validationErrors : [ValidationError] = row.section?.form?.validate(), validationErrors.isEmpty {
@@ -129,54 +127,74 @@ class CustomerDetailViewController: FormViewController {
                         let formValues = self.form.values()
                         var newCustomer = Customer(formValues)
                         
+                        // MARK: - CREATE
                         if self.userIsCurrently == .creating {
                             
-                            self.testController.dataRows.append(newCustomer)
+                            // use uuid because no id for creating new-customer
+                            let fakeHashId = NSUUID().uuidString
+                            self.testController.customerInfoDictionary[fakeHashId] = newCustomer
                             self.testController.reloadTableData()
-                            // detect error
-                            // show alert
-                            // remove from local
-                            // otherwise do nothing
-                            self.APIRequester.create(newCustomer) { (customer, error) in
-                                if error != nil {
-                                    let title = "Unable to create customer"
-                                    let message = "Sorry, we couldn't create a new customer. Please try again later."
-                                    self.testController.showAlert(title: title, message: message)
-                                    print(error ?? title)
-                                }
-                                print("created")
-                                print(customer)
-                            }
-//                            print("something happened")
                             
-                        } else if self.userIsCurrently == .updating {
-                            // there is something to update
-                            if !self.customer.isEquivalentTo(newCustomer) {
-                                newCustomer.id = self.customer.id
-                                self.testController.dataRows[self.customerIndex] = newCustomer
-                                self.testController.reloadTableData()
-                                // detect error
+                            self.APIRequester.create(newCustomer, fakeHashId) { (fakeId, realId, newCustomer, error) in
+                                
+                                if error != nil {
+                                    
                                     // show alert
-                                    // have kept track of customer and customer index
-                                    // revert customer back to old customer
-                                // otherwise do nothing
-                                self.APIRequester.update(newCustomer) { (customer, error) in
-                                    if error != nil {
-                                        let title = "Unable to update customer"
-                                        let message = "Sorry, we couldn't update the customer's data! Please try again later."
-                                        self.testController.showAlert(title: title, message: message)
-                                        print(error ?? title)
+                                    let title = "Unable to create customer"
+                                    let message = "Sorry, we couldn't create a new customer. Please check your internet connection or try again later."
+                                    self.testController.showAlert(title: title, message: message)
+                                    
+                                    // log error
+                                    print(error ?? title)
+                                    
+                                } else {
+                                    if let id = realId {
+                                        
+                                        // set customer to real customer id
+                                        self.testController.customerInfoDictionary[id] = newCustomer
+                                        
                                     }
                                 }
+                                
+                                // remove fakeHashId info and reload table data
+                                self.testController.customerInfoDictionary[fakeId!] = nil
+                                self.testController.reloadTableData()
+                            }
+                        
+                        // MARK: - UPDATE
+                        } else if self.userIsCurrently == .updating {
+                            
+                            // there is something to update - non-equivalent
+                            if !(self.customer == newCustomer) {
+                                
+                                newCustomer.id = self.customer.id
+                                
+                                // set old-customer equal to new-customer in dictionary
+                                self.testController.customerInfoDictionary[newCustomer.id!] = newCustomer
+                                self.testController.reloadTableData()
+                                
+                                self.APIRequester.update(from: self.customer, to: newCustomer) { (customerId, oldCustomer, error) in
+                                    if error != nil {
+                                        // show alert
+                                        let title = "Unable to update customer"
+                                        let message = "Sorry, we couldn't update the customer's data! Please check your internet connection or try again later."
+                                        self.testController.showAlert(title: title, message: message)
+                                        
+                                        // log error
+                                        print(error ?? title)
+                                        
+                                        // if request failed, revert new-customer back to old-customer
+                                        self.testController.customerInfoDictionary[customerId!] = oldCustomer
+                                        self.testController.reloadTableData()
+                                    }
+                                }
+                                
+                            } else {
+                                print("no update needed")
                             }
                         }
                         
                         self.navigationController?.popToRootViewController(animated: true)
-                    }
-                    
-                    
-                    else {
-                        // sad path, maybe show an alert? although errors will already be visible
                     }
                 })
             }

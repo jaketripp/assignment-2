@@ -28,17 +28,17 @@ struct Customer {
     }
     
     /// returns Bool of whether current data is equivalent to a passed Customer object.
-    func isEquivalentTo(_ passedCustomer: Customer) -> Bool {
-        return passedCustomer.name == self.name &&
-                passedCustomer.email == self.email &&
-                passedCustomer.street == self.street &&
-                passedCustomer.city == self.city &&
-                passedCustomer.state == self.state &&
-                passedCustomer.zip == self.zip
+    static func ==(left: Customer, right: Customer) -> Bool {
+        return left.name == right.name &&
+                left.email == right.email &&
+                left.street == right.street &&
+                left.city == right.city &&
+                left.state == right.state &&
+                left.zip == right.zip
     }
     
     func asDictionary() -> [String:Any] {
-        var data : [String:Any] = [:]
+        var data = [String:Any]()
         data["Name"] = self.name
         data["Email__c"] = self.email
         data["Address__c"] = self.street
