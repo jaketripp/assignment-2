@@ -17,7 +17,6 @@
 		CC13CDC5216684C600DA1F6A /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13CDC4216684C600DA1F6A /* ApiRequest.swift */; };
 		CC13CDC72166869000DA1F6A /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13CDC62166869000DA1F6A /* TableViewCell.swift */; };
 		CC13CDCA21669D8300DA1F6A /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13CDC921669D8300DA1F6A /* Customer.swift */; };
-		CC13CDCC2166A19D00DA1F6A /* DeletedCustomerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13CDCB2166A19D00DA1F6A /* DeletedCustomerInfo.swift */; };
 		CC13CDD12166AF0500DA1F6A /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC13CDD02166AF0500DA1F6A /* Media.xcassets */; };
 		CC13CDD42166B57600DA1F6A /* Ext_Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13CDD32166B57600DA1F6A /* Ext_Color.swift */; };
 		CC6B93D0216BF4DC00371341 /* Ext_Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B93CF216BF4DC00371341 /* Ext_Alert.swift */; };
@@ -42,7 +41,6 @@
 		CC13CDC4216684C600DA1F6A /* ApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
 		CC13CDC62166869000DA1F6A /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		CC13CDC921669D8300DA1F6A /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
-		CC13CDCB2166A19D00DA1F6A /* DeletedCustomerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedCustomerInfo.swift; sourceTree = "<group>"; };
 		CC13CDD02166AF0500DA1F6A /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		CC13CDD32166B57600DA1F6A /* Ext_Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_Color.swift; sourceTree = "<group>"; };
 		CC6B93CF216BF4DC00371341 /* Ext_Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_Alert.swift; sourceTree = "<group>"; };
@@ -149,7 +147,6 @@
 			isa = PBXGroup;
 			children = (
 				CC13CDC921669D8300DA1F6A /* Customer.swift */,
-				CC13CDCB2166A19D00DA1F6A /* DeletedCustomerInfo.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -345,7 +342,6 @@
 				4FD6C47A1B754AF1002F9F90 /* AppDelegate.swift in Sources */,
 				CCB513C72166F56A002B3DBD /* CustomerDetailViewController.swift in Sources */,
 				CCB513CF2167ED0F002B3DBD /* Validation.swift in Sources */,
-				CC13CDCC2166A19D00DA1F6A /* DeletedCustomerInfo.swift in Sources */,
 				CC13CDCA21669D8300DA1F6A /* Customer.swift in Sources */,
 				4FD6C49F1B755242002F9F90 /* RootViewController.swift in Sources */,
 				CC6B93D0216BF4DC00371341 /* Ext_Alert.swift in Sources */,

@@ -16,7 +16,7 @@ class ApiRequest: NSObject {
     let restApi = SFRestAPI.sharedInstance()
     
     /// Get the initial data
-    func getDataRows(completion: @escaping (([String : Customer]) -> Void)) {
+    func getData(completion: @escaping (([String : Customer]) -> Void)) {
         let soqlQuery = "SELECT Id, Name, Email__c, Address__c, City__c, State__c, Zip__c, LastModifiedDate FROM CM_Customer__c WHERE State__c != NULL ORDER BY LastModifiedDate DESC LIMIT 25"
         
         restApi.performSOQLQuery(soqlQuery, fail: { (error, response) in
@@ -40,16 +40,17 @@ class ApiRequest: NSObject {
     }
     
     /// Send update request to SF
-    func update(from oldCustomer: Customer, to newCustomer: Customer, completion: @escaping ((String?, Customer?, Error?) -> Void)) {
+    func update(from oldCustomer: Customer, to newCustomer: Customer, completion: @escaping ((String, Customer, Error?) -> Void)) {
         let fields = newCustomer.asDictionary()
         if let id = oldCustomer.id {
             restApi.performUpdate(withObjectType: "CM_Customer__c", objectId: id, fields: fields,
-                  fail: { (error, response) in
+                fail: { (error, response) in
                     SalesforceSwiftLogger.log(type(of:self), level:.debug, message:"Error: \(error)")
                     completion(id, oldCustomer, error)
                 },
-                  complete: { (json, httpResponse) in
+                complete: { (json, httpResponse) in
                     print("customer updated")
+                    // no need for completion
                 }
             )
             
@@ -57,7 +58,7 @@ class ApiRequest: NSObject {
     }
     
     /// Send create request to SF
-    func create(_ customer: Customer, _ fakeId: String, completion: @escaping ((String?, String?, Customer?, Error?) -> Void)) {
+    func create(_ customer: Customer, _ fakeId: String, completion: @escaping ((String, String?, Customer?, Error?) -> Void)) {
         let fields = customer.asDictionary()
         
         restApi.performCreate(withObjectType: "CM_Customer__c", fields: fields,

@@ -11,24 +11,24 @@ import Eureka
 
 class CustomerDetailViewController: FormViewController {
     
-//    ["Name": "Jake Tripp",
-//    "Email__c": "shmogens@gmail.com",
-//    "Address__c": "123 Apple Street",
-//    "City__c": "San Antonio",
-//    "State__c": "TX",
-//    "Zip__c": "78209"]
-
+    //    ["Name": "Jake Tripp",
+    //    "Email__c": "shmogens@gmail.com",
+    //    "Address__c": "123 Apple Street",
+    //    "City__c": "San Antonio",
+    //    "State__c": "TX",
+    //    "Zip__c": "78209"]
+    
+    var rootViewController: RootViewController!
     var customerIndex : Int!
     var customers : [Customer]!
-    // TODO: Change passing VC to a Class that houses the storage
-    var testController: RootViewController!
     var customer : Customer {
         get {
             return customerIndex != nil ? customers[customerIndex] : Customer([:])
         }
     }
+    
     var APIRequester : ApiRequest = ApiRequest()
-
+    
     /// Track current form state
     enum currentAction {
         case updating
@@ -48,7 +48,7 @@ class CustomerDetailViewController: FormViewController {
         static let zip = "Zip__c"
         static let submitButton = "submitButton"
     }
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         Validation.setEurekaRowDefaults()
@@ -114,7 +114,7 @@ class CustomerDetailViewController: FormViewController {
                     // if it's nil or empty, do nothing
                     if  (input ?? "").isEmpty {
                         return nil
-                    // if it can be casted to an int, do nothing
+                        // if it can be casted to an int, do nothing
                     } else if input != nil, let _ = Int(input!) {
                         return nil
                     } else {
@@ -136,7 +136,7 @@ class CustomerDetailViewController: FormViewController {
                         if self.userIsCurrently == .creating {
                             
                             self.handleCreate(newCustomer)
-                        
+                            
                         } else if self.userIsCurrently == .updating {
                             
                             self.handleUpdate(newCustomer)
@@ -146,7 +146,7 @@ class CustomerDetailViewController: FormViewController {
                         self.navigationController?.popToRootViewController(animated: true)
                     }
                 })
-            }
+        }
         
     }
     
@@ -154,20 +154,20 @@ class CustomerDetailViewController: FormViewController {
     func handleCreate(_ newCustomer: Customer) {
         // use uuid because no id for creating new-customer
         let fakeHashId = NSUUID().uuidString
-        self.testController.customerInfoDictionary[fakeHashId] = newCustomer
-        self.testController.reloadTableData()
+        self.rootViewController.customerDictionary[fakeHashId] = newCustomer
+        self.rootViewController.reloadTableData()
         
         self.APIRequester.create(newCustomer, fakeHashId, completion: self.createCompletion)
     }
     
-    func createCompletion(fakeId: String?, realId: String?, newCustomer: Customer?, error: Error?) {
+    func createCompletion(fakeId: String, realId: String?, newCustomer: Customer?, error: Error?) {
         
         if error != nil {
             
             // show alert
             let title = "Unable to create customer"
             let message = "Sorry, we couldn't create a new customer. Please check your internet connection or try again later."
-            self.testController.showAlert(title: title, message: message)
+            self.rootViewController.showAlert(title: title, message: message)
             
             // log error
             print(error ?? title)
@@ -176,14 +176,14 @@ class CustomerDetailViewController: FormViewController {
             if let id = realId {
                 
                 // set customer to real customer id
-                self.testController.customerInfoDictionary[id] = newCustomer
+                self.rootViewController.customerDictionary[id] = newCustomer
                 
             }
         }
         
         // remove fakeHashId info and reload table data
-        self.testController.customerInfoDictionary[fakeId!] = nil
-        self.testController.reloadTableData()
+        self.rootViewController.customerDictionary[fakeId] = nil
+        self.rootViewController.reloadTableData()
     }
     
     // MARK: - UPDATE
@@ -197,8 +197,8 @@ class CustomerDetailViewController: FormViewController {
             newCustomer.id = self.customer.id
             
             // set old-customer equal to new-customer in dictionary
-            self.testController.customerInfoDictionary[newCustomer.id!] = newCustomer
-            self.testController.reloadTableData()
+            self.rootViewController.customerDictionary[newCustomer.id!] = newCustomer
+            self.rootViewController.reloadTableData()
             
             self.APIRequester.update(from: self.customer, to: newCustomer, completion: self.updateCreation)
             
@@ -207,19 +207,19 @@ class CustomerDetailViewController: FormViewController {
         }
     }
     
-    func updateCreation(customerId: String?, oldCustomer: Customer?, error: Error?) {
+    func updateCreation(customerId: String, oldCustomer: Customer, error: Error?) {
         if error != nil {
             // show alert
             let title = "Unable to update customer"
             let message = "Sorry, we couldn't update the customer's data! Please check your internet connection or try again later."
-            self.testController.showAlert(title: title, message: message)
+            self.rootViewController.showAlert(title: title, message: message)
             
             // log error
             print(error ?? title)
             
             // if request failed, revert new-customer back to old-customer
-            self.testController.customerInfoDictionary[customerId!] = oldCustomer
-            self.testController.reloadTableData()
+            self.rootViewController.customerDictionary[customerId] = oldCustomer
+            self.rootViewController.reloadTableData()
         }
     }
     
