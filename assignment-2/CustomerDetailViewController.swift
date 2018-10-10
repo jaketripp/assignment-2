@@ -96,6 +96,12 @@ class CustomerDetailViewController: FormViewController {
                 row.noValueDisplayText = "Pick a state"
                 row.options = ["", "AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"]
                 row.value = customer.state
+                // set row value to nil if user sets state to empty string
+                row.onCellSelection() { cell, row in
+                    if row.value == "" {
+                        row.value = nil
+                    }
+                }
             }
             
             // MARK: - ZIP
@@ -126,12 +132,6 @@ class CustomerDetailViewController: FormViewController {
                         
                         let formValues = self.form.values()
                         var newCustomer = Customer(formValues)
-                        
-                        // remove empty string state
-                        // (user opened picklist and kept it on empty string - first option)
-                        if newCustomer.state == "" {
-                            newCustomer.state = nil
-                        }
                         
                         // MARK: - CREATE
                         if self.userIsCurrently == .creating {
