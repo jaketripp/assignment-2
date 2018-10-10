@@ -133,71 +133,14 @@ class CustomerDetailViewController: FormViewController {
                         let formValues = self.form.values()
                         var newCustomer = Customer(formValues)
                         
-                        // MARK: - CREATE
                         if self.userIsCurrently == .creating {
                             
-                            // use uuid because no id for creating new-customer
-                            let fakeHashId = NSUUID().uuidString
-                            self.testController.customerInfoDictionary[fakeHashId] = newCustomer
-                            self.testController.reloadTableData()
-                            
-                            self.APIRequester.create(newCustomer, fakeHashId) { (fakeId, realId, newCustomer, error) in
-                                
-                                if error != nil {
-                                    
-                                    // show alert
-                                    let title = "Unable to create customer"
-                                    let message = "Sorry, we couldn't create a new customer. Please check your internet connection or try again later."
-                                    self.testController.showAlert(title: title, message: message)
-                                    
-                                    // log error
-                                    print(error ?? title)
-                                    
-                                } else {
-                                    if let id = realId {
-                                        
-                                        // set customer to real customer id
-                                        self.testController.customerInfoDictionary[id] = newCustomer
-                                        
-                                    }
-                                }
-                                
-                                // remove fakeHashId info and reload table data
-                                self.testController.customerInfoDictionary[fakeId!] = nil
-                                self.testController.reloadTableData()
-                            }
+                            self.handleCreate(newCustomer)
                         
-                        // MARK: - UPDATE
                         } else if self.userIsCurrently == .updating {
                             
-                            // there is something to update - non-equivalent
-                            if !(self.customer == newCustomer) {
-                                
-                                newCustomer.id = self.customer.id
-                                
-                                // set old-customer equal to new-customer in dictionary
-                                self.testController.customerInfoDictionary[newCustomer.id!] = newCustomer
-                                self.testController.reloadTableData()
-                                
-                                self.APIRequester.update(from: self.customer, to: newCustomer) { (customerId, oldCustomer, error) in
-                                    if error != nil {
-                                        // show alert
-                                        let title = "Unable to update customer"
-                                        let message = "Sorry, we couldn't update the customer's data! Please check your internet connection or try again later."
-                                        self.testController.showAlert(title: title, message: message)
-                                        
-                                        // log error
-                                        print(error ?? title)
-                                        
-                                        // if request failed, revert new-customer back to old-customer
-                                        self.testController.customerInfoDictionary[customerId!] = oldCustomer
-                                        self.testController.reloadTableData()
-                                    }
-                                }
-                                
-                            } else {
-                                print("no update needed")
-                            }
+                            self.handleUpdate(newCustomer)
+                            
                         }
                         
                         self.navigationController?.popToRootViewController(animated: true)
@@ -207,5 +150,77 @@ class CustomerDetailViewController: FormViewController {
         
     }
     
+    // MARK: - CREATE
+    func handleCreate(_ newCustomer: Customer) {
+        // use uuid because no id for creating new-customer
+        let fakeHashId = NSUUID().uuidString
+        self.testController.customerInfoDictionary[fakeHashId] = newCustomer
+        self.testController.reloadTableData()
+        
+        self.APIRequester.create(newCustomer, fakeHashId, completion: self.createCompletion)
+    }
+    
+    func createCompletion(fakeId: String?, realId: String?, newCustomer: Customer?, error: Error?) {
+        
+        if error != nil {
+            
+            // show alert
+            let title = "Unable to create customer"
+            let message = "Sorry, we couldn't create a new customer. Please check your internet connection or try again later."
+            self.testController.showAlert(title: title, message: message)
+            
+            // log error
+            print(error ?? title)
+            
+        } else {
+            if let id = realId {
+                
+                // set customer to real customer id
+                self.testController.customerInfoDictionary[id] = newCustomer
+                
+            }
+        }
+        
+        // remove fakeHashId info and reload table data
+        self.testController.customerInfoDictionary[fakeId!] = nil
+        self.testController.reloadTableData()
+    }
+    
+    // MARK: - UPDATE
+    func handleUpdate(_ customerPassed: Customer) {
+        
+        var newCustomer = customerPassed
+        
+        // there is something to update - non-equivalent
+        if !(self.customer == newCustomer) {
+            
+            newCustomer.id = self.customer.id
+            
+            // set old-customer equal to new-customer in dictionary
+            self.testController.customerInfoDictionary[newCustomer.id!] = newCustomer
+            self.testController.reloadTableData()
+            
+            self.APIRequester.update(from: self.customer, to: newCustomer, completion: self.updateCreation)
+            
+        } else {
+            print("no update needed")
+        }
+    }
+    
+    func updateCreation(customerId: String?, oldCustomer: Customer?, error: Error?) {
+        if error != nil {
+            // show alert
+            let title = "Unable to update customer"
+            let message = "Sorry, we couldn't update the customer's data! Please check your internet connection or try again later."
+            self.testController.showAlert(title: title, message: message)
+            
+            // log error
+            print(error ?? title)
+            
+            // if request failed, revert new-customer back to old-customer
+            self.testController.customerInfoDictionary[customerId!] = oldCustomer
+            self.testController.reloadTableData()
+        }
+    }
     
 }
