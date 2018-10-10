@@ -40,11 +40,11 @@ struct Customer {
     func asDictionary() -> [String:Any] {
         var data = [String:Any]()
         data["Name"] = self.name
-        data["Email__c"] = self.email
-        data["Address__c"] = self.street
-        data["City__c"] = self.city
-        data["State__c"] = self.state
-        data["Zip__c"] = self.zip
+        data["Email__c"] = self.email ?? ""
+        data["Address__c"] = self.street ?? ""
+        data["City__c"] = self.city ?? ""
+        data["State__c"] = self.state ?? ""
+        data["Zip__c"] = self.zip ?? ""
         return data
     }
 }
