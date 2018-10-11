@@ -31,11 +31,18 @@ import PromiseKit
 class RootViewController : UITableViewController {
     
     // MARK: - DATA / VARIABLES
-    var customerList : [Customer] = [Customer]()
     var customerDictionary = [String : Customer]()
+    private var shouldSortBy : sortBy = .name
+    private var isAscending : Bool = true
+    
+    var customerList : [Customer] {
+        get {
+            let customers = Array(self.customerDictionary.values)
+            return sort(customers, by: shouldSortBy, isAscending: isAscending)
+        }
+    }
     
     private var APIRequester : ApiRequest = ApiRequest()
-    private var isAscending : Bool = true
     private var myRefreshControl : UIRefreshControl?
     private let restApi = SFRestAPI.sharedInstance()
     
@@ -102,33 +109,29 @@ class RootViewController : UITableViewController {
     
     func reloadTableData() {
         DispatchQueue.main.async(execute: {
-            self.resetCustomerList()
             self.tableView.reloadData()
         })
     }
-    
-    func resetCustomerList() {
-        self.customerList = Array(self.customerDictionary.values)
-        self.sortBasedOnSegmentState()
-    }
+ 
     
     // MARK: - SORT
     @IBOutlet weak var sortSegmentController: UISegmentedControl!
     
     @IBAction func sortTapped(_ sender: UISegmentedControl) {
-        reloadTableData()
-    }
-    
-    func sortBasedOnSegmentState() {
-        let scIndex = sortSegmentController.selectedSegmentIndex
-        switch scIndex {
-            case 0:
-                self.customerList = sort(self.customerList, by: .name)
-            case 1:
-                self.customerList = sort(self.customerList, by: .state)
-            default:
-                print("Error: a non-available segment control button was pressed")
-        }
+        DispatchQueue.main.async(execute: {
+            let scIndex = self.sortSegmentController.selectedSegmentIndex
+            switch scIndex {
+                case 0:
+                    self.shouldSortBy = .name
+                case 1:
+                    self.shouldSortBy = .state
+                default:
+                    print("Error: a non-available segment control button was pressed")
+                    self.shouldSortBy = .name
+            }
+            self.reloadTableData()
+        })
+        
     }
     
     enum sortBy {
@@ -136,7 +139,7 @@ class RootViewController : UITableViewController {
         case state
     }
     
-    func sort(_ customers: [Customer], by whatToSortBy: sortBy) -> [Customer] {
+    func sort(_ customers: [Customer], by whatToSortBy: sortBy, isAscending: Bool) -> [Customer] {
         switch whatToSortBy {
             case .name:
                 if (isAscending) {
@@ -158,26 +161,25 @@ class RootViewController : UITableViewController {
     @IBOutlet weak var ascOrDesc: UIButton!
     @IBAction func ascOrDescPressed(_ sender: UIButton) {
         isAscending = !isAscending
-        if (isAscending) {
-            ascOrDesc.setImage(UIImage(named: "asc"), for: .normal)
-        } else {
-            ascOrDesc.setImage(UIImage(named: "desc"), for: .normal)
-        }
-        self.customerList = self.customerList.reversed()
-        reloadTableData()
+        let imageName = isAscending ? "asc" : "desc"
+        ascOrDesc.setImage(UIImage(named: imageName), for: .normal)
+        self.reloadTableData()
     }
-    
+
     
     // MARK: - UPDATE
+    // TODO: set the destination.customer property to either the customer or an empty customer
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toUpdateCustomerDetail" {
             if let destination = segue.destination as? CustomerDetailViewController {
+                
                 destination.userIsCurrently = .updating
                 destination.customers = self.customerList
+                
                 if let indexPath = tableView.indexPathForSelectedRow {
-                    let selectedRow = indexPath.row
                     
-                    destination.customerIndex = selectedRow
+                    let selectedRow = indexPath.row
+                    destination.customer = self.customerList[selectedRow]
                     destination.rootViewController = self
                     
                 }
@@ -186,6 +188,7 @@ class RootViewController : UITableViewController {
             if let destination = segue.destination as? CustomerDetailViewController {
                 destination.userIsCurrently = .creating
                 destination.customers = self.customerList
+                destination.customer = Customer([:])
                 destination.rootViewController = self
             }
         }
@@ -214,7 +217,6 @@ class RootViewController : UITableViewController {
                 self.tableView.beginUpdates()
                 
                 self.customerDictionary[deletedId] = nil
-                self.resetCustomerList()
                 
                 /// delete rows with pretty animation
                 self.tableView.deleteRows(at: [indexPath], with: .left)
@@ -244,7 +246,6 @@ class RootViewController : UITableViewController {
             self.tableView.beginUpdates()
             
             self.customerDictionary[id] = customer
-            self.resetCustomerList()
             
             /// re-insert rows that weren't successfully deleted with pretty animation
             self.tableView.insertRows(at: [indexPath], with: .left)
