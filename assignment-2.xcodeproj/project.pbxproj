@@ -22,6 +22,7 @@
 		CC6B93D0216BF4DC00371341 /* Ext_Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B93CF216BF4DC00371341 /* Ext_Alert.swift */; };
 		CCB513C72166F56A002B3DBD /* CustomerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB513C62166F56A002B3DBD /* CustomerDetailViewController.swift */; };
 		CCB513CF2167ED0F002B3DBD /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB513CE2167ED0F002B3DBD /* Validation.swift */; };
+		CCCD472F216FB9CB004EB593 /* Customers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCD472E216FB9CB004EB593 /* Customers.swift */; };
 		CEA8CA041F071B2300448B51 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA8CA031F071B2300448B51 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		CC6B93CF216BF4DC00371341 /* Ext_Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_Alert.swift; sourceTree = "<group>"; };
 		CCB513C62166F56A002B3DBD /* CustomerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerDetailViewController.swift; sourceTree = "<group>"; };
 		CCB513CE2167ED0F002B3DBD /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		CCCD472E216FB9CB004EB593 /* Customers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customers.swift; sourceTree = "<group>"; };
 		CEA8CA031F071B2300448B51 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/Images.xcassets"; sourceTree = SOURCE_ROOT; };
 		E422662361B0B41B1AC61E78 /* Pods_assignment_2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_assignment_2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				CC13CDC921669D8300DA1F6A /* Customer.swift */,
+				CCCD472E216FB9CB004EB593 /* Customers.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -170,9 +173,9 @@
 		CC13CDD22166B55100DA1F6A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				CC6B93CF216BF4DC00371341 /* Ext_Alert.swift */,
 				CC13CDD32166B57600DA1F6A /* Ext_Color.swift */,
 				CCB513CE2167ED0F002B3DBD /* Validation.swift */,
-				CC6B93CF216BF4DC00371341 /* Ext_Alert.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				4FD6C49F1B755242002F9F90 /* RootViewController.swift in Sources */,
 				CC6B93D0216BF4DC00371341 /* Ext_Alert.swift in Sources */,
 				4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */,
+				CCCD472F216FB9CB004EB593 /* Customers.swift in Sources */,
 				CC13CDC72166869000DA1F6A /* TableViewCell.swift in Sources */,
 				CC13CDC5216684C600DA1F6A /* ApiRequest.swift in Sources */,
 				4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */,
