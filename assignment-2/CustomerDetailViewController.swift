@@ -19,13 +19,8 @@ class CustomerDetailViewController: FormViewController {
     //    "Zip__c": "78209"]
     
     var rootViewController: RootViewController!
-    var customerIndex : Int!
     var customers : [Customer]!
-    var customer : Customer {
-        get {
-            return customerIndex != nil ? customers[customerIndex] : Customer([:])
-        }
-    }
+    var customer : Customer!
     
     var APIRequester : ApiRequest = ApiRequest()
     
