@@ -9,6 +9,11 @@
 import UIKit
 import Eureka
 
+protocol CustomerDetailProtocol {
+    func reloadTableData()
+    func showAlert(title: String, message: String)
+}
+
 class CustomerDetailViewController: FormViewController {
     
     //    ["Name": "Jake Tripp",
@@ -18,11 +23,10 @@ class CustomerDetailViewController: FormViewController {
     //    "State__c": "TX",
     //    "Zip__c": "78209"]
     
-    var rootViewController: RootViewController!
-    var customers : [Customer]!
+    var customers : Customers!
     var customer : Customer!
-    
     var APIRequester : ApiRequest = ApiRequest()
+    var delegate : CustomerDetailProtocol?
     
     /// Track current form state
     enum currentAction {
@@ -109,7 +113,7 @@ class CustomerDetailViewController: FormViewController {
                     // if it's nil or empty, do nothing
                     if  (input ?? "").isEmpty {
                         return nil
-                        // if it can be casted to an int, do nothing
+                    // if it can be casted to an int, do nothing
                     } else if input != nil, let _ = Int(input!) {
                         return nil
                     } else {
@@ -149,20 +153,21 @@ class CustomerDetailViewController: FormViewController {
     func handleCreate(_ newCustomer: Customer) {
         // use uuid because no id for creating new-customer
         let fakeHashId = NSUUID().uuidString
-        self.rootViewController.customerDictionary[fakeHashId] = newCustomer
-        self.rootViewController.reloadTableData()
-        
+        self.customers.dictionary[fakeHashId] = newCustomer
         self.APIRequester.create(newCustomer, fakeHashId, completion: self.createCompletion)
     }
     
     func createCompletion(fakeId: String, realId: String?, newCustomer: Customer?, error: Error?) {
+        
+        // remove fakeHashId
+        self.customers.dictionary[fakeId] = nil
         
         if error != nil {
             
             // show alert
             let title = "Unable to create customer"
             let message = "Sorry, we couldn't create a new customer. Please check your internet connection or try again later."
-            self.rootViewController.showAlert(title: title, message: message)
+            delegate?.showAlert(title: title, message: message)
             
             // log error
             print(error ?? title)
@@ -171,14 +176,10 @@ class CustomerDetailViewController: FormViewController {
             if let id = realId {
                 
                 // set customer to real customer id
-                self.rootViewController.customerDictionary[id] = newCustomer
-                
+                self.customers.dictionary[id] = newCustomer
+                delegate?.reloadTableData()
             }
         }
-        
-        // remove fakeHashId info and reload table data
-        self.rootViewController.customerDictionary[fakeId] = nil
-        self.rootViewController.reloadTableData()
     }
     
     // MARK: - UPDATE
@@ -192,29 +193,31 @@ class CustomerDetailViewController: FormViewController {
             newCustomer.id = self.customer.id
             
             // set old-customer equal to new-customer in dictionary
-            self.rootViewController.customerDictionary[newCustomer.id!] = newCustomer
-            self.rootViewController.reloadTableData()
+            self.customers.dictionary[newCustomer.id!] = newCustomer
             
-            self.APIRequester.update(from: self.customer, to: newCustomer, completion: self.updateCreation)
+            delegate?.reloadTableData()
+            
+            self.APIRequester.update(from: self.customer, to: newCustomer, completion: self.updateCompletion)
             
         } else {
             print("no update needed")
         }
     }
     
-    func updateCreation(customerId: String, oldCustomer: Customer, error: Error?) {
+    func updateCompletion(customerId: String, oldCustomer: Customer, error: Error?) {
         if error != nil {
             // show alert
             let title = "Unable to update customer"
             let message = "Sorry, we couldn't update the customer's data! Please check your internet connection or try again later."
-            self.rootViewController.showAlert(title: title, message: message)
+            delegate?.showAlert(title: title, message: message)
             
             // log error
             print(error ?? title)
             
             // if request failed, revert new-customer back to old-customer
-            self.rootViewController.customerDictionary[customerId] = oldCustomer
-            self.rootViewController.reloadTableData()
+            self.customers.dictionary[customerId] = oldCustomer
+            
+            delegate?.reloadTableData()
         }
     }
     

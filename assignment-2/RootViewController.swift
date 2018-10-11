@@ -28,16 +28,18 @@ import SalesforceSDKCore
 import SalesforceSwiftSDK
 import PromiseKit
 
-class RootViewController : UITableViewController {
+class RootViewController : UITableViewController, CustomerDetailProtocol {
     
     // MARK: - DATA / VARIABLES
-    var customerDictionary = [String : Customer]()
+    var customers = Customers()
+    
     private var shouldSortBy : sortBy = .name
     private var isAscending : Bool = true
     
+    /// An array of the customers dictionary values. Automatically sorts itself based on variable state. No setters (intentional).
     var customerList : [Customer] {
         get {
-            let customers = Array(self.customerDictionary.values)
+            let customers = Array(self.customers.dictionary.values)
             return sort(customers, by: shouldSortBy, isAscending: isAscending)
         }
     }
@@ -55,7 +57,7 @@ class RootViewController : UITableViewController {
     
     @objc func getAndLoadData() {
         APIRequester.getData { (response) in
-            self.customerDictionary = response
+            self.customers.dictionary = response
             self.reloadTableData()
             DispatchQueue.main.async(execute: {
                 self.refreshControl?.endRefreshing()
@@ -112,7 +114,7 @@ class RootViewController : UITableViewController {
             self.tableView.reloadData()
         })
     }
- 
+    
     
     // MARK: - SORT
     @IBOutlet weak var sortSegmentController: UISegmentedControl!
@@ -165,31 +167,27 @@ class RootViewController : UITableViewController {
         ascOrDesc.setImage(UIImage(named: imageName), for: .normal)
         self.reloadTableData()
     }
-
+    
     
     // MARK: - UPDATE
-    // TODO: set the destination.customer property to either the customer or an empty customer
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toUpdateCustomerDetail" {
-            if let destination = segue.destination as? CustomerDetailViewController {
+            if let destination = segue.destination as? CustomerDetailViewController,
+                let indexPath = tableView.indexPathForSelectedRow {
                 
+                let selectedRow = indexPath.row
                 destination.userIsCurrently = .updating
-                destination.customers = self.customerList
-                
-                if let indexPath = tableView.indexPathForSelectedRow {
+                destination.customers = self.customers
+                destination.customer = self.customerList[selectedRow]
+                destination.delegate = self
                     
-                    let selectedRow = indexPath.row
-                    destination.customer = self.customerList[selectedRow]
-                    destination.rootViewController = self
-                    
-                }
             }
         } else if segue.identifier == "toCreateCustomerDetail" {
             if let destination = segue.destination as? CustomerDetailViewController {
                 destination.userIsCurrently = .creating
-                destination.customers = self.customerList
+                destination.customers = self.customers
                 destination.customer = Customer([:])
-                destination.rootViewController = self
+                destination.delegate = self
             }
         }
     }
@@ -216,7 +214,7 @@ class RootViewController : UITableViewController {
             DispatchQueue.main.async {
                 self.tableView.beginUpdates()
                 
-                self.customerDictionary[deletedId] = nil
+                self.customers.dictionary[deletedId] = nil
                 
                 /// delete rows with pretty animation
                 self.tableView.deleteRows(at: [indexPath], with: .left)
@@ -245,7 +243,7 @@ class RootViewController : UITableViewController {
             
             self.tableView.beginUpdates()
             
-            self.customerDictionary[id] = customer
+            self.customers.dictionary[id] = customer
             
             /// re-insert rows that weren't successfully deleted with pretty animation
             self.tableView.insertRows(at: [indexPath], with: .left)

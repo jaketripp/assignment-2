@@ -17,26 +17,29 @@ class ApiRequest: NSObject {
     
     /// Get the initial data
     func getData(completion: @escaping (([String : Customer]) -> Void)) {
-        let soqlQuery = "SELECT Id, Name, Email__c, Address__c, City__c, State__c, Zip__c, LastModifiedDate FROM CM_Customer__c WHERE State__c != NULL ORDER BY LastModifiedDate DESC LIMIT 25"
+        let soqlQuery = "SELECT Id, Name, Email__c, Address__c, City__c, State__c, Zip__c, LastModifiedDate FROM CM_Customer__c ORDER BY LastModifiedDate DESC LIMIT 25"
         
-        restApi.performSOQLQuery(soqlQuery, fail: { (error, response) in
+        restApi.performSOQLQuery(soqlQuery,
+             fail: { (error, response) in
             
-            SalesforceSwiftLogger.log(type(of:self), level:.debug, message:"Error: \(error)")
-            SFUserAccountManager.sharedInstance().logout()
+                SalesforceSwiftLogger.log(type(of:self), level:.debug, message:"Error: \(error)")
+                SFUserAccountManager.sharedInstance().logout()
             
-        }, complete: { (json, httpResponse) in
+            },
+             complete: { (json, httpResponse) in
             
-            if let dict = json as? [String : Any], let records = dict["records"] as? [[String: Any]] {
-                var customers = [String : Customer]()
-                for customer in records {
-                    if let id = customer["Id"] as? String {
-                        customers[id] = Customer(customer)
+                if let dict = json as? [String : Any], let records = dict["records"] as? [[String: Any]] {
+                    var customers = [String : Customer]()
+                    for customer in records {
+                        if let id = customer["Id"] as? String {
+                            customers[id] = Customer(customer)
+                        }
                     }
+                    completion(customers)
                 }
-                completion(customers)
-            }
             
-        })
+            }
+        )
     }
     
     /// Send update request to SF
