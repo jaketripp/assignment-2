@@ -32,9 +32,9 @@ class RootViewController : UITableViewController, CustomerDetailProtocol {
     
     // MARK: - DATA / VARIABLES
     var customers = Customers()
-    
     private var shouldSortBy : sortBy = .name
     private var isAscending : Bool = true
+    private var myRefreshControl : UIRefreshControl?
     
     /// An array of the customers dictionary values. Automatically sorts itself based on variable state. No setters (intentional).
     var customerList : [Customer] {
@@ -44,10 +44,6 @@ class RootViewController : UITableViewController, CustomerDetailProtocol {
         }
     }
     
-    private var APIRequester : ApiRequest = ApiRequest()
-    private var myRefreshControl : UIRefreshControl?
-    private let restApi = SFRestAPI.sharedInstance()
-    
     // MARK: - View lifecycle
     override func loadView() {
         super.loadView()
@@ -56,7 +52,7 @@ class RootViewController : UITableViewController, CustomerDetailProtocol {
     }
     
     @objc func getAndLoadData() {
-        APIRequester.getData { (response) in
+        customers.get { (response) in
             self.customers.dictionary = response
             self.reloadTableData()
             DispatchQueue.main.async(execute: {
@@ -169,7 +165,7 @@ class RootViewController : UITableViewController, CustomerDetailProtocol {
     }
     
     
-    // MARK: - UPDATE
+    // MARK: - SEGUE
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toUpdateCustomerDetail" {
             if let destination = segue.destination as? CustomerDetailViewController,
@@ -209,59 +205,39 @@ class RootViewController : UITableViewController, CustomerDetailProtocol {
         if (row < self.customerList.count && editingStyle == UITableViewCellEditingStyle.delete) {
             let customer = self.customerList[row]
             let deletedId: String = customer.id!
-            
             // update UI first
             DispatchQueue.main.async {
                 self.tableView.beginUpdates()
-                
                 self.customers.dictionary[deletedId] = nil
-                
                 /// delete rows with pretty animation
                 self.tableView.deleteRows(at: [indexPath], with: .left)
-                
                 self.tableView.endUpdates()
             }
             
-            let deleteRequest: SFRestRequest = restApi.requestForDelete(withObjectType: "CM_Customer__c",
-                                                                        objectId: deletedId)
-            
-            restApi.Promises.send(request: deleteRequest)
-                .done { response  in
-                    print("customer deleted")
+            customers.delete(id: deletedId) { (e) in
+                if e != nil {
+                    self.reinstateDeletedRowWithRequest(customer, deletedId, indexPath)
+                    self.showErrorAlert(e!)
                 }
-                // re-insert customers if delete failed
-                .catch { [weak self] error in
-                    let e = error as NSError
-                    self?.reinstateDeletedRowWithRequest(customer, deletedId, indexPath)
-                    self?.showErrorAlert(e as NSError, request: deleteRequest)
             }
         }
     }
-    
+    /// re-insert customers if delete failed
     func reinstateDeletedRowWithRequest(_ customer: Customer, _ id: String, _ indexPath: IndexPath) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            
             self.tableView.beginUpdates()
-            
             self.customers.dictionary[id] = customer
-            
             /// re-insert rows that weren't successfully deleted with pretty animation
             self.tableView.insertRows(at: [indexPath], with: .left)
-            
             self.tableView.endUpdates()
-            
         }
     }
     
-    private func showErrorAlert(_ error: NSError, request: SFRestRequest) {
+    private func showErrorAlert(_ error: NSError) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            // kept for reference for future projects
-            let errArray = error.userInfo["error"] as? [Any] ?? [""]
-            if errArray.count > 0 {
-                let message = "Sorry, we couldn't delete that customer! Please check your internet connection or try again later."
-                let title = "Unable to delete customer"
-                self.showAlert(title: title, message: message)
-            }
+            let message = "Sorry, we couldn't delete that customer! Please check your internet connection or try again later."
+            let title = "Unable to delete customer"
+            self.showAlert(title: title, message: message)
         }
     }
 }

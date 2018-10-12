@@ -25,7 +25,6 @@ class CustomerDetailViewController: FormViewController {
     
     var customers : Customers!
     var customer : Customer!
-    var APIRequester : ApiRequest = ApiRequest()
     var delegate : CustomerDetailProtocol?
     
     /// Track current form state
@@ -154,7 +153,7 @@ class CustomerDetailViewController: FormViewController {
         // use uuid because no id for creating new-customer
         let fakeHashId = NSUUID().uuidString
         self.customers.dictionary[fakeHashId] = newCustomer
-        self.APIRequester.create(newCustomer, fakeHashId, completion: self.createCompletion)
+        self.customers.create(newCustomer, fakeHashId, completion: self.createCompletion)
     }
     
     func createCompletion(fakeId: String, realId: String?, newCustomer: Customer?, error: Error?) {
@@ -197,7 +196,7 @@ class CustomerDetailViewController: FormViewController {
             
             delegate?.reloadTableData()
             
-            self.APIRequester.update(from: self.customer, to: newCustomer, completion: self.updateCompletion)
+            self.customers.update(from: self.customer, to: newCustomer, completion: self.updateCompletion)
             
         } else {
             print("no update needed")
