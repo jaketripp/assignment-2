@@ -28,6 +28,12 @@ import SalesforceSDKCore
 import SalesforceSwiftSDK
 import PromiseKit
 
+/// User's current sort preference. Default is name.
+enum sortBy {
+    case name
+    case state
+}
+
 class RootViewController : UITableViewController, CustomerDetailProtocol {
     
     // MARK: - DATA / VARIABLES
@@ -52,8 +58,7 @@ class RootViewController : UITableViewController, CustomerDetailProtocol {
     }
     
     @objc func getAndLoadData() {
-        customers.get { (response) in
-            self.customers.dictionary = response
+        customers.get {
             self.reloadTableData()
             DispatchQueue.main.async(execute: {
                 self.refreshControl?.endRefreshing()
@@ -130,11 +135,6 @@ class RootViewController : UITableViewController, CustomerDetailProtocol {
             self.reloadTableData()
         })
         
-    }
-    
-    enum sortBy {
-        case name
-        case state
     }
     
     func sort(_ customers: [Customer], by whatToSortBy: sortBy, isAscending: Bool) -> [Customer] {
@@ -222,6 +222,7 @@ class RootViewController : UITableViewController, CustomerDetailProtocol {
             }
         }
     }
+    
     /// re-insert customers if delete failed
     func reinstateDeletedRowWithRequest(_ customer: Customer, _ id: String, _ indexPath: IndexPath) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -235,7 +236,7 @@ class RootViewController : UITableViewController, CustomerDetailProtocol {
     
     private func showErrorAlert(_ error: NSError) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            let message = "Sorry, we couldn't delete that customer! Please check your internet connection or try again later."
+            let message = "Sorry, we couldn't delete that customer."
             let title = "Unable to delete customer"
             self.showAlert(title: title, message: message)
         }

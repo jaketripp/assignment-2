@@ -16,21 +16,20 @@ class Customers: NSObject {
     let restApi = SFRestAPI.sharedInstance()
     
     /// Get the initial customers' data
-    func get(completion: @escaping (([String : Customer]) -> Void)) {
+    func get(completion: @escaping (() -> Void)) {
         
-        let soqlQuery = "SELECT Id, Name, Email__c, Address__c, City__c, State__c, Zip__c, LastModifiedDate FROM CM_Customer__c ORDER BY LastModifiedDate DESC LIMIT 25"
-        let getRequest = restApi.request(forQueryAll: soqlQuery)
+        let soqlQuery = "SELECT Id, Name, Email__c, Address__c, City__c, State__c, Zip__c, LastModifiedDate FROM CM_Customer__c ORDER BY LastModifiedDate DESC LIMIT 100"
+        let getRequest = restApi.request(forQuery: soqlQuery)
         
         restApi.Promises.send(request: getRequest)
             .done { response in
                 if let records = response.asJsonDictionary()["records"] as? [[String: Any]] {
-                    var customers = [String : Customer]()
                     for customer in records {
                         if let id = customer["Id"] as? String {
-                            customers[id] = Customer(customer)
+                            self.dictionary[id] = Customer(customer)
                         }
                     }
-                    completion(customers)
+                    completion()
                 }
             }
             .catch { error in

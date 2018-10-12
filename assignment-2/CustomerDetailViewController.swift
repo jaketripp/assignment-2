@@ -6,37 +6,38 @@
 //  Copyright © 2018 Salesforce. All rights reserved.
 //
 
+// ["Name": "Jake Tripp",
+//  "Email__c": "shmogens@gmail.com",
+//  "Address__c": "123 Apple Street",
+//  "City__c": "San Antonio",
+//  "State__c": "TX",
+//  "Zip__c": "78209"]
+
 import UIKit
 import Eureka
 
+/// Protocol that allows controller to be delegate for CustomerDetailVC.
 protocol CustomerDetailProtocol {
     func reloadTableData()
     func showAlert(title: String, message: String)
 }
 
+/// Track current form state.
+enum currentAction {
+    case updating
+    case creating
+}
+
 class CustomerDetailViewController: FormViewController {
-    
-    //    ["Name": "Jake Tripp",
-    //    "Email__c": "shmogens@gmail.com",
-    //    "Address__c": "123 Apple Street",
-    //    "City__c": "San Antonio",
-    //    "State__c": "TX",
-    //    "Zip__c": "78209"]
     
     var customers : Customers!
     var customer : Customer!
     var delegate : CustomerDetailProtocol?
     
-    /// Track current form state
-    enum currentAction {
-        case updating
-        case creating
-    }
-    
     /// What the user is currently doing (creating or updating)
     var userIsCurrently : currentAction = .creating
     
-    // Struct for form items tag constants
+    /// Struct for form items tag constants
     struct FormItems {
         static let name = "Name"
         static let email = "Email__c"
@@ -153,6 +154,7 @@ class CustomerDetailViewController: FormViewController {
         // use uuid because no id for creating new-customer
         let fakeHashId = NSUUID().uuidString
         self.customers.dictionary[fakeHashId] = newCustomer
+        delegate?.reloadTableData()
         self.customers.create(newCustomer, fakeHashId, completion: self.createCompletion)
     }
     
@@ -165,7 +167,7 @@ class CustomerDetailViewController: FormViewController {
             
             // show alert
             let title = "Unable to create customer"
-            let message = "Sorry, we couldn't create a new customer. Please check your internet connection or try again later."
+            let message = "Sorry, we couldn't create a new customer."
             delegate?.showAlert(title: title, message: message)
             
             // log error
@@ -207,7 +209,7 @@ class CustomerDetailViewController: FormViewController {
         if error != nil {
             // show alert
             let title = "Unable to update customer"
-            let message = "Sorry, we couldn't update the customer's data! Please check your internet connection or try again later."
+            let message = "Sorry, we couldn't update the customer's data."
             delegate?.showAlert(title: title, message: message)
             
             // log error

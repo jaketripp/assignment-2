@@ -10,7 +10,8 @@ import UIKit
 
 extension UITableViewController {
     func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let realMessage = "\(message) Please check your internet connection or try again later."
+        let alert = UIAlertController(title: title, message: realMessage, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
