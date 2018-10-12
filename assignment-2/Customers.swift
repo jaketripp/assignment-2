@@ -70,7 +70,7 @@ class Customers: NSObject {
             
             restApi.Promises.send(request: updateRequest)
                 .done { _ in
-                    // no need for completion
+                    // no need for completion because we aren't doing anything
                     print("customer updated")
                 }
                 .catch { error in

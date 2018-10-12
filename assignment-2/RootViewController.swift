@@ -29,7 +29,7 @@ import SalesforceSwiftSDK
 import PromiseKit
 
 /// User's current sort preference. Default is name.
-enum sortBy {
+enum SortBy {
     case name
     case state
 }
@@ -38,7 +38,7 @@ class RootViewController : UITableViewController, CustomerDetailProtocol {
     
     // MARK: - DATA / VARIABLES
     var customers = Customers()
-    private var shouldSortBy : sortBy = .name
+    private var shouldSortBy : SortBy = .name
     private var isAscending : Bool = true
     private var myRefreshControl : UIRefreshControl?
     
@@ -88,7 +88,7 @@ class RootViewController : UITableViewController, CustomerDetailProtocol {
         let cellIdentifier = "tableViewCell"
         
         // Dequeue or create a cell of the appropriate type.
-        let cell = tableView.dequeueReusableCell(withIdentifier:cellIdentifier) as! TableViewCell
+        let cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier:cellIdentifier)!
         
         // If you want to add an image to your cell, here's how.
         // let image = UIImage(named: "central-market-logo.png")
@@ -99,7 +99,7 @@ class RootViewController : UITableViewController, CustomerDetailProtocol {
         let name = customer.name!
         let state = customer.state
         let formattedState = state != nil ? "- \(state!)" : ""
-        cell.nameAndState.text = "\(name) \(formattedState)"
+        cell.textLabel?.text = "\(name) \(formattedState)"
         
         // Central Market Font ??????
         // cell!.textLabel!.font = UIFont(name: "TrendHMSansOne", size: 25)
@@ -108,6 +108,7 @@ class RootViewController : UITableViewController, CustomerDetailProtocol {
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
         return cell
+        
     }
     
     func reloadTableData() {
@@ -124,33 +125,33 @@ class RootViewController : UITableViewController, CustomerDetailProtocol {
         DispatchQueue.main.async(execute: {
             let scIndex = self.sortSegmentController.selectedSegmentIndex
             switch scIndex {
-                case 0:
-                    self.shouldSortBy = .name
-                case 1:
-                    self.shouldSortBy = .state
-                default:
-                    print("Error: a non-available segment control button was pressed")
-                    self.shouldSortBy = .name
+            case 0:
+                self.shouldSortBy = .name
+            case 1:
+                self.shouldSortBy = .state
+            default:
+                print("Error: a non-available segment control button was pressed")
+                self.shouldSortBy = .name
             }
             self.reloadTableData()
         })
         
     }
     
-    func sort(_ customers: [Customer], by whatToSortBy: sortBy, isAscending: Bool) -> [Customer] {
+    func sort(_ customers: [Customer], by whatToSortBy: SortBy, isAscending: Bool) -> [Customer] {
         switch whatToSortBy {
-            case .name:
-                if (isAscending) {
-                    return customers.sorted { $0.name ?? "" < $1.name ?? "" }
-                } else {
-                    return customers.sorted { $0.name ?? "" > $1.name ?? "" }
-                }
-            case .state:
-                if (isAscending) {
-                    return customers.sorted { $0.state ?? "" < $1.state ?? "" }
-                } else {
-                    return customers.sorted { $0.state ?? "" > $1.state ?? "" }
-                }
+        case .name:
+            if (isAscending) {
+                return customers.sorted { $0.name ?? "" < $1.name ?? "" }
+            } else {
+                return customers.sorted { $0.name ?? "" > $1.name ?? "" }
+            }
+        case .state:
+            if (isAscending) {
+                return customers.sorted { $0.state ?? "" < $1.state ?? "" }
+            } else {
+                return customers.sorted { $0.state ?? "" > $1.state ?? "" }
+            }
         }
     }
     
@@ -176,7 +177,7 @@ class RootViewController : UITableViewController, CustomerDetailProtocol {
                 destination.customers = self.customers
                 destination.customer = self.customerList[selectedRow]
                 destination.delegate = self
-                    
+                
             }
         } else if segue.identifier == "toCreateCustomerDetail" {
             if let destination = segue.destination as? CustomerDetailViewController {
@@ -238,7 +239,7 @@ class RootViewController : UITableViewController, CustomerDetailProtocol {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             let message = "Sorry, we couldn't delete that customer."
             let title = "Unable to delete customer"
-            self.showAlert(title: title, message: message)
+            self.showCustomerActionFailureAlert(title: title, message: message)
         }
     }
 }

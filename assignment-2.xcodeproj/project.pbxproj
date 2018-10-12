@@ -14,7 +14,6 @@
 		4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C49D1B755242002F9F90 /* InitialViewController.swift */; };
 		B7168FBC1FACC6F900A48DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */; };
 		CC13CDC22166838100DA1F6A /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC13CDC12166838100DA1F6A /* Root.storyboard */; };
-		CC13CDC72166869000DA1F6A /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13CDC62166869000DA1F6A /* TableViewCell.swift */; };
 		CC13CDCA21669D8300DA1F6A /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13CDC921669D8300DA1F6A /* Customer.swift */; };
 		CC13CDD12166AF0500DA1F6A /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC13CDD02166AF0500DA1F6A /* Media.xcassets */; };
 		CC13CDD42166B57600DA1F6A /* Ext_Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13CDD32166B57600DA1F6A /* Ext_Color.swift */; };
@@ -38,7 +37,6 @@
 		762732C14CFE40A989C3AD70 /* Pods-assignment-2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-assignment-2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-assignment-2/Pods-assignment-2.debug.xcconfig"; sourceTree = "<group>"; };
 		B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "../mobile_sdk/SalesforceMobileSDK-iOS/shared/resources/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		CC13CDC12166838100DA1F6A /* Root.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Root.storyboard; sourceTree = "<group>"; };
-		CC13CDC62166869000DA1F6A /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		CC13CDC921669D8300DA1F6A /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		CC13CDD02166AF0500DA1F6A /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		CC13CDD32166B57600DA1F6A /* Ext_Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_Color.swift; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 			isa = PBXGroup;
 			children = (
 				CC13CDC12166838100DA1F6A /* Root.storyboard */,
-				CC13CDC62166869000DA1F6A /* TableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -347,7 +344,6 @@
 				CC6B93D0216BF4DC00371341 /* Ext_Alert.swift in Sources */,
 				4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */,
 				CCCD472F216FB9CB004EB593 /* Customers.swift in Sources */,
-				CC13CDC72166869000DA1F6A /* TableViewCell.swift in Sources */,
 				4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */,
 				CC13CDD42166B57600DA1F6A /* Ext_Color.swift in Sources */,
 			);

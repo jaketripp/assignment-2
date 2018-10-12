@@ -17,13 +17,14 @@ import UIKit
 import Eureka
 
 /// Protocol that allows controller to be delegate for CustomerDetailVC.
-protocol CustomerDetailProtocol {
+// class type must implement this protocol
+protocol CustomerDetailProtocol: class {
     func reloadTableData()
-    func showAlert(title: String, message: String)
+    func showCustomerActionFailureAlert(title: String, message: String)
 }
 
 /// Track current form state.
-enum currentAction {
+enum CurrentAction {
     case updating
     case creating
 }
@@ -32,10 +33,11 @@ class CustomerDetailViewController: FormViewController {
     
     var customers : Customers!
     var customer : Customer!
-    var delegate : CustomerDetailProtocol?
+    // made weak so that memory can properly be deallocated (get rid of the cycles)
+    weak var delegate : CustomerDetailProtocol?
     
     /// What the user is currently doing (creating or updating)
-    var userIsCurrently : currentAction = .creating
+    var userIsCurrently : CurrentAction = .creating
     
     /// Struct for form items tag constants
     struct FormItems {
@@ -113,7 +115,7 @@ class CustomerDetailViewController: FormViewController {
                     // if it's nil or empty, do nothing
                     if  (input ?? "").isEmpty {
                         return nil
-                    // if it can be casted to an int, do nothing
+                        // if it can be casted to an int, do nothing
                     } else if input != nil, let _ = Int(input!) {
                         return nil
                     } else {
@@ -168,7 +170,7 @@ class CustomerDetailViewController: FormViewController {
             // show alert
             let title = "Unable to create customer"
             let message = "Sorry, we couldn't create a new customer."
-            delegate?.showAlert(title: title, message: message)
+            delegate?.showCustomerActionFailureAlert(title: title, message: message)
             
             // log error
             print(error ?? title)
@@ -210,7 +212,7 @@ class CustomerDetailViewController: FormViewController {
             // show alert
             let title = "Unable to update customer"
             let message = "Sorry, we couldn't update the customer's data."
-            delegate?.showAlert(title: title, message: message)
+            delegate?.showCustomerActionFailureAlert(title: title, message: message)
             
             // log error
             print(error ?? title)
